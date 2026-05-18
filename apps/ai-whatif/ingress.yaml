@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: aiwhatif-ingress
+  namespace: ai-whatif
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - aiwhatif.nightingaleheart.com
+        - api.aiwhatif.nightingaleheart.com
+      secretName: aiwhatif-tls
+  rules:
+    - host: aiwhatif.nightingaleheart.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: aiwhatif-frontend-service
+                port:
+                  number: 80
+    - host: api.aiwhatif.nightingaleheart.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: aiwhatif-backend-service
+                port:
+                  number: 9000

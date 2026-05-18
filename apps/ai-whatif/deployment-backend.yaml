@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aiwhatif-backend
+  namespace: ai-whatif
+  labels:
+    app: aiwhatif-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: aiwhatif-backend
+  template:
+    metadata:
+      labels:
+        app: aiwhatif-backend
+    spec:
+      containers:
+        - name: aiwhatif-backend
+          image: # image GHCR
+          ports:
+            - containerPort: 9000

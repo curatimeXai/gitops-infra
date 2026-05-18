@@ -1,1 +1,32 @@
+# gitops-infra
 
+Dépôt GitOps centralisé pour le cluster Kubernetes UpCloud. ArgoCD surveille ce repo et applique automatiquement les changements dans le cluster.
+
+## Structure
+
+```
+gitops-infra/
+├── root-app.yaml          # Application ArgoCD racine (App of Apps) — à appliquer une seule fois manuellement
+├── argocd-apps/           # Une Application ArgoCD par service — gérées par root-app
+└── apps/                  # Manifests Kubernetes par service
+    └── ai-whatif/         # Déploiement du service AI What-If (front React + back R/Plumber)
+```
+
+## Ajout d'un nouveau service
+
+1. Créer un dossier `apps/<nom-service>/` avec les manifests (namespace, deployment, service, ingress)
+2. Créer `argocd-apps/<nom-service>.yaml` pointant vers ce dossier
+3. Committer — ArgoCD déploie automatiquement
+
+## Secrets
+
+Les secrets ne sont jamais commités. Les appliquer manuellement :
+```bash
+kubectl apply -f secret.yaml -n <namespace>
+```
+
+## Prérequis cluster
+
+- ingress-nginx
+- cert-manager
+- ArgoCD
