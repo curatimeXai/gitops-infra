@@ -9,7 +9,8 @@ gitops-infra/
 ├── root-app.yaml          # Root ArgoCD Application (App of Apps) — apply manually once
 ├── argocd-apps/           # One ArgoCD Application per service — managed by root-app
 └── apps/                  # Kubernetes manifests per service
-    └── ai-whatif/         # AI What-If service (React frontend + R/Plumber backend)
+    ├── ai-whatif/         # AI What-If service (React frontend + R/Plumber backend)
+    └── cluster-issuer/    # Let's Encrypt ClusterIssuer for SSL certificates
 ```
 
 ## Adding a new service
