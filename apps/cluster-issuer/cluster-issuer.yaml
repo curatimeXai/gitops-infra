@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    email: e-mailaajouter@exemple.com
+    profile: tlsserver
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: nightingale-issuer-account-key
+  solvers:
+    - http01:
+        ingress:
+          ingressClassName: nginx

@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ai-whatif
+  namespace: argocd
+spec:
+   project: default
+   source:
+      repoURL: https://github.com/curatimeXai/gitops-infra.git
+      targetRevision: HEAD
+      path: apps/ai-whatif
+   destination:
+     server: https://kubernetes.default.svc
+     namespace: ai-whatif
+   syncPolicy:
+     automated:
+        prune: true
+        selfHeal: true
