@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/curatimeXai/gitops-infra.git
+    repoURL: git@github.com:curatimeXai/gitops-infra.git
     targetRevision: HEAD
     path: apps/cluster-issuer
   destination:
