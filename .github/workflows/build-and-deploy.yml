@@ -39,6 +39,7 @@ jobs:
         with:
           app-id: ${{ secrets.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+          owner: curatimeXai
      
       - name: Login to GHCR
         uses: docker/login-action@v4
