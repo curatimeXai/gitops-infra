@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: aiwhatif-frontend
-          image: ghcr.io/curatimexai/nightingale-aiwhatif-frontend:latest
+          image: ghcr.io/curatimexai/nightingale-aiwhatif-frontend:53cbc73775ac740d52a9670d412e071e66bcf816
           ports:
             - containerPort: 80
