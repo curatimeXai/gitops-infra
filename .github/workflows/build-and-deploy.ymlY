@@ -1,0 +1,73 @@
+name: Reusable workflow for deploy apps on kubernetes cluster
+on:
+  workflow_call:
+    inputs:
+      app-name:
+        required: true
+        type: string
+      frontend-image:
+        required: true
+        type: string
+      backend-image:
+        required: true
+        type: string
+      frontend-context:
+        required: true
+        type: string
+      backend-context:
+        required: true
+        type: string
+    secrets:
+      GH_APP_ID:
+        required: true
+      GH_APP_PRIVATE_KEY:
+        required: true
+      GHCR_TOKEN:
+        required: true
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout app repo
+        uses: actions/checkout@v4
+
+
+      - name: Generate GitHub App token
+        uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ secrets.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+     
+      - name: Login to GHCR
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ steps.app-token.outputs.token }} 
+
+      - name: Build and push frontend image
+        uses: docker/build-push-action@v7
+        with:
+          push: true
+          tags: ghcr.io/curatimeXai/${{ inputs.frontend-image }}:${{ github.sha }}
+          context: ${{ inputs.frontend-context }}
+
+      - name: Build and push backend image
+        uses: docker/build-push-action@v7
+        with:
+          push: true
+          tags: ghcr.io/curatimeXai/${{ inputs.backend-image }}:${{ github.sha }}
+          context: ${{ inputs.backend-context }}
+
+      - name: Update image tags in gitops-infra
+        run: |
+          git clone https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/curatimeXai/gitops-infra.git
+          cd gitops-infra
+          sed -i "s|image: ghcr.io/curatimeXai/${{ inputs.frontend-image }}:.*|image: ghcr.io/curatimeXai/${{ inputs.frontend-image }}:${{ github.sha }}|" apps/${{ inputs.app-name }}/deployment-frontend.yaml
+          sed -i "s|image: ghcr.io/curatimeXai/${{ inputs.backend-image }}:.*|image: ghcr.io/curatimeXai/${{ inputs.backend-image }}:${{ github.sha }}|" apps/${{ inputs.app-name }}/deployment-backend.yaml
+          git config user.email "github-actions@github.com"
+          git config user.name "GitHub Actions"
+          git add .
+          git commit -m "Update ${{ inputs.app-name }} images to ${{ github.sha }}"
+          git push origin master

@@ -17,6 +17,9 @@ spec:
     spec:
       containers:
         - name: aiwhatif-backend
-          image: # image GHCR
+          image: ghcr.io/curatimeXai/nightingale-aiwhatif-backend:latest
+          envFrom:
+            - secretRef:
+                name: aiwhatif-secret
           ports:
             - containerPort: 9000
