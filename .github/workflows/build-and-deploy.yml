@@ -48,22 +48,22 @@ jobs:
         uses: docker/build-push-action@v7
         with:
           push: true
-          tags: ghcr.io/curatimeXai/${{ inputs.frontend-image }}:${{ github.sha }}
+          tags: ghcr.io/curatimexai/${{ inputs.frontend-image }}:${{ github.sha }}
           context: ${{ inputs.frontend-context }}
 
       - name: Build and push backend image
         uses: docker/build-push-action@v7
         with:
           push: true
-          tags: ghcr.io/curatimeXai/${{ inputs.backend-image }}:${{ github.sha }}
+          tags: ghcr.io/curatimexai/${{ inputs.backend-image }}:${{ github.sha }}
           context: ${{ inputs.backend-context }}
 
       - name: Update image tags in gitops-infra
         run: |
           git clone https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/curatimeXai/gitops-infra.git
           cd gitops-infra
-          sed -i "s|image: ghcr.io/curatimeXai/${{ inputs.frontend-image }}:.*|image: ghcr.io/curatimeXai/${{ inputs.frontend-image }}:${{ github.sha }}|" apps/${{ inputs.app-name }}/deployment-frontend.yaml
-          sed -i "s|image: ghcr.io/curatimeXai/${{ inputs.backend-image }}:.*|image: ghcr.io/curatimeXai/${{ inputs.backend-image }}:${{ github.sha }}|" apps/${{ inputs.app-name }}/deployment-backend.yaml
+          sed -i "s|image: ghcr.io/curatimexai/${{ inputs.frontend-image }}:.*|image: ghcr.io/curatimexai/${{ inputs.frontend-image }}:${{ github.sha }}|" apps/${{ inputs.app-name }}/deployment-frontend.yaml
+          sed -i "s|image: ghcr.io/curatimexai/${{ inputs.backend-image }}:.*|image: ghcr.io/curatimexai/${{ inputs.backend-image }}:${{ github.sha }}|" apps/${{ inputs.app-name }}/deployment-backend.yaml
           git config user.email "github-actions@github.com"
           git config user.name "GitHub Actions"
           git add .
