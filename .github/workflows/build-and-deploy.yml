@@ -60,6 +60,7 @@ jobs:
           push: true
           tags: ghcr.io/curatimexai/${{ inputs.backend-image }}:${{ github.sha }}
           context: ${{ inputs.backend-context }}
+          build-args: GITHUB_PAT=${{ secrets.GITHUB_TOKEN }}
 
       - name: Update image tags in gitops-infra
         run: |
