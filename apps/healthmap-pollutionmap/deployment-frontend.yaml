@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pollutionmap-frontend
+  namespace: pollutionmap
+  labels:
+    app: pollutionmap-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pollutionmap-frontend
+  template:
+    metadata:
+      labels:
+        app: pollutionmap-frontend
+    spec:
+      containers:
+        - name: pollutionmap-frontend
+          image: ghcr.io/curatimexai/nightingale-pollutionmap-frontend:latest
+          ports:
+            - containerPort: 80

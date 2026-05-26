@@ -17,11 +17,15 @@ on:
       backend-context:
         required: true
         type: string
+      api-url:
+        required: true
+        type: string
     secrets:
       GH_APP_ID:
         required: true
       GH_APP_PRIVATE_KEY:
         required: true
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -54,6 +58,7 @@ jobs:
           push: true
           tags: ghcr.io/curatimexai/${{ inputs.frontend-image }}:${{ github.sha }}
           context: ${{ inputs.frontend-context }}
+          build-args: API_URL=${{ inputs.api-url }}
 
       - name: Build and push backend image
         uses: docker/build-push-action@v7

@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: healthmap-pollutionmap
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:curatimeXai/gitops-infra.git
+    targetRevision: HEAD
+    path: apps/healthmap-pollutionmap
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: pollutionmap
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

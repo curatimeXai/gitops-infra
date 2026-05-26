@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pollutionmap-ingress
+  namespace: pollutionmap
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - pollutionmap.nightingaleheart.com
+        - api.pollutionmap.nightingaleheart.com
+      secretName: pollutionmap-tls
+  rules:
+    - host: pollutionmap.nightingaleheart.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pollutionmap-service-frontend
+                port:
+                  number: 80
+    - host: api.pollutionmap.nightingaleheart.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pollutionmap-service-backend
+                port:
+                  number: 3000
