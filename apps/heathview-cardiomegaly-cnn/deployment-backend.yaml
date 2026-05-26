@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cardiomegaly-backend
+  namespace: healthview-cardiomegaly-cnn
+  labels:
+    app: cardiomegaly-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cardiomegaly-backend
+  template:
+    metadata:
+      labels:
+        app: cardiomegaly-backend
+    spec:
+      imagePullSecrets:
+        - name: ghcr-secret
+      containers:
+        - name: cardiomegaly-backend
+          image: ghcr.io/curatimexai/healthview-cardiomegaly-cnn-backend:latest
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: cardiomegaly-secret
+          ports:
+            - containerPort: 8000
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 60
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "1Gi"
+            limits:
+              cpu: "2"
+              memory: "4Gi"

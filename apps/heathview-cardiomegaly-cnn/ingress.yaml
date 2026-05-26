@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cardiomegaly-ingress
+  namespace: healthview-cardiomegaly-cnn
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - cardiomegaly.nightingaleheart.com
+        - api-cardiomegaly.nightingaleheart.com
+      secretName: cardiomegaly-tls
+  rules:
+    - host: cardiomegaly.nightingaleheart.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: cardiomegaly-frontend-service
+                port:
+                  number: 80
+    - host: api-cardiomegaly.nightingaleheart.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: cardiomegaly-backend-service
+                port:
+                  number: 8000
