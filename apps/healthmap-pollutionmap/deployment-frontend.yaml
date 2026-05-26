@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: pollutionmap-frontend
-          image: ghcr.io/curatimexai/nightingale-pollutionmap-frontend:latest
+          image: ghcr.io/curatimexai/nightingale-pollutionmap-frontend:6a0e9a7587ddf3d99e80669ead982f96760c16e3
           ports:
             - containerPort: 80
