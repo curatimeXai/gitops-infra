@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: echoexplore-frontend
-          image: ghcr.io/curatimexai/echoexplore-frontend:3c59e6d97b378e6c29419df54673379b0ad7b6f5
+          image: ghcr.io/curatimexai/echoexplore-frontend:084b5981a2c2aa0fa0e59cb72d384de57653f803
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
