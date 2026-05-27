@@ -9,13 +9,13 @@ on:
         required: true
         type: string
       backend-image:
-        required: true
+        required: false
         type: string
       frontend-context:
         required: true
         type: string
       backend-context:
-        required: true
+        required: false
         type: string
       api-url:
         required: false
@@ -62,6 +62,7 @@ jobs:
           build-args: API_URL=${{ inputs.api-url }}
 
       - name: Build and push backend image
+        if: inputs.backend-context != ''
         uses: docker/build-push-action@v7
         with:
           push: true
@@ -74,7 +75,9 @@ jobs:
           git clone https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/curatimeXai/gitops-infra.git
           cd gitops-infra
           sed -i "s|image: ghcr.io/curatimexai/${{ inputs.frontend-image }}:.*|image: ghcr.io/curatimexai/${{ inputs.frontend-image }}:${{ github.sha }}|" apps/${{ inputs.app-name }}/deployment-frontend.yaml
-          sed -i "s|image: ghcr.io/curatimexai/${{ inputs.backend-image }}:.*|image: ghcr.io/curatimexai/${{ inputs.backend-image }}:${{ github.sha }}|" apps/${{ inputs.app-name }}/deployment-backend.yaml
+          if [[ -n "${{ inputs.backend-image }}" ]];
+          then sed -i "s|image: ghcr.io/curatimexai/${{ inputs.backend-image }}:.*|image: ghcr.io/curatimexai/${{ inputs.backend-image }}:${{ github.sha }}|" apps/${{ inputs.app-name }}/deployment-backend.yaml
+          fi 
           git config user.email "github-actions@github.com"
           git config user.name "GitHub Actions"
           git add .
