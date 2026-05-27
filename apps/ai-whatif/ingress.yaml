@@ -9,11 +9,11 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - aiwhatif.nightingaleheart.com
-        - api.aiwhatif.nightingaleheart.com
+        - aiwhatif.test.nightingaleheart.com
+        - api.aiwhatif.test.nightingaleheart.com
       secretName: aiwhatif-tls
   rules:
-    - host: aiwhatif.nightingaleheart.com
+    - host: aiwhatif.test.nightingaleheart.com
       http:
         paths:
           - path: /
@@ -23,7 +23,7 @@ spec:
                 name: aiwhatif-frontend-service
                 port:
                   number: 80
-    - host: api.aiwhatif.nightingaleheart.com
+    - host: api.aiwhatif.test.nightingaleheart.com
       http:
         paths:
           - path: /

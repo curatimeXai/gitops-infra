@@ -9,11 +9,11 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - pollutionmap.nightingaleheart.com
-        - api.pollutionmap.nightingaleheart.com
+        - pollutionmap.test.nightingaleheart.com
+        - api.pollutionmap.test.nightingaleheart.com
       secretName: pollutionmap-tls
   rules:
-    - host: pollutionmap.nightingaleheart.com
+    - host: pollutionmap.test.nightingaleheart.com
       http:
         paths:
           - path: /
@@ -23,7 +23,7 @@ spec:
                 name: pollutionmap-service-frontend
                 port:
                   number: 80
-    - host: api.pollutionmap.nightingaleheart.com
+    - host: api.pollutionmap.test.nightingaleheart.com
       http:
         paths:
           - path: /
