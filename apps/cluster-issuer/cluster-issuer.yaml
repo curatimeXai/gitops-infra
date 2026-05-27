@@ -11,5 +11,5 @@ spec:
       name: nightingale-issuer-account-key
     solvers:
       - http01:
-        ingress:
-          ingressClassName: nginx
+          ingress:
+            ingressClassName: nginx
