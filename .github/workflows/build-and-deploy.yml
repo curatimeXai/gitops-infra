@@ -18,8 +18,9 @@ on:
         required: true
         type: string
       api-url:
-        required: true
+        required: false
         type: string
+        default: ""
     secrets:
       GH_APP_ID:
         required: true
