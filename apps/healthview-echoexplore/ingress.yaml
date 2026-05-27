@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: echoexplore-ingress
+  namespace: healthview-echoexplore
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - echoexplore.test.nightingaleheart.com
+        - api-echoexplore.test.nightingaleheart.com
+      secretName: echoexplore-tls
+  rules:
+    - host: echoexplore.test.nightingaleheart.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: echoexplore-frontend-service
+                port:
+                  number: 80
+    - host: api-echoexplore.test.nightingaleheart.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: echoexplore-backend-service
+                port:
+                  number: 5000

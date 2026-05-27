@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echoexplore-backend
+  namespace: healthview-echoexplore
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: echoexplore-backend
+  template:
+    metadata:
+      labels:
+        app: echoexplore-backend
+    spec:
+      containers:
+        - name: echoexplore-backend
+          image: ghcr.io/curatimexai/healthview-echoexplore-backend:placeholder
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - secretRef:
+                name: echoexplore-secret
+                optional: true
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              cpu: "2"
+              memory: 4Gi
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 5000
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 6
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 5000
+            initialDelaySeconds: 180
+            periodSeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 3

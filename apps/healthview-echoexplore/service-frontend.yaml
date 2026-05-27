@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: echoexplore-frontend-service
+  namespace: healthview-echoexplore
+spec:
+  type: ClusterIP
+  selector:
+    app: echoexplore-frontend
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000
