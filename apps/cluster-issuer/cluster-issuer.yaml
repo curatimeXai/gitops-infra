@@ -9,7 +9,7 @@ spec:
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: nightingale-issuer-account-key
-  solvers:
-    - http01:
+    solvers:
+      - http01:
         ingress:
           ingressClassName: nginx
