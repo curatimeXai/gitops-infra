@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: echoexplore-backend
-          image: ghcr.io/curatimexai/healthview-echoexplore-backend:placeholder
+          image: ghcr.io/curatimexai/healthview-echoexplore-backend:3c59e6d97b378e6c29419df54673379b0ad7b6f5
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
