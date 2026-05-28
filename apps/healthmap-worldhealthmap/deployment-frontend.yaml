@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worldhealthmap-frontend
+  namespace: worldhealthmap
+  labels:
+    app: worldhealthmap-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: worldhealthmap-frontend
+  template:
+    metadata:
+      labels:
+        app: worldhealthmap-frontend
+    spec:
+      containers:
+        - name: worldhealthmap-frontend
+          image: ghcr.io/curatimexai/nightingale-worldhealthmap:latest
+          ports:
+            - containerPort: 80
