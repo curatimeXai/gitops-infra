@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: heart-sayings
-          image: ghcr.io/curatimexai/healthmap-heart-sayings:latest
+          image: ghcr.io/curatimexai/heart-sayings:latest
           imagePullPolicy: Always
           ports:
             - name: http
