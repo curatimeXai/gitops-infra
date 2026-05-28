@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: healthmap-heart-sayings
+  namespace: healthmap-heart-sayings
+  labels:
+    app.kubernetes.io/name: healthmap-heart-sayings
+    app.kubernetes.io/part-of: healthmap
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: healthmap-heart-sayings
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

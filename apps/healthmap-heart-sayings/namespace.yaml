@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: healthmap-heart-sayings
+  labels:
+    app.kubernetes.io/name: healthmap-heart-sayings
+    app.kubernetes.io/part-of: healthmap

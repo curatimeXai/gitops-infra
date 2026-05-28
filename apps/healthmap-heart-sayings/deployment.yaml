@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthmap-heart-sayings
+  namespace: healthmap-heart-sayings
+  labels:
+    app.kubernetes.io/name: healthmap-heart-sayings
+    app.kubernetes.io/part-of: healthmap
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: healthmap-heart-sayings
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: healthmap-heart-sayings
+        app.kubernetes.io/part-of: healthmap
+    spec:
+      containers:
+        - name: heart-sayings
+          image: ghcr.io/curatimexai/healthmap-heart-sayings:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 80
+          env:
+            - name: MYSQL_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: heart-sayings-db-secret
+                  key: MYSQL_HOST
+            - name: MYSQL_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: heart-sayings-db-secret
+                  key: MYSQL_PORT
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: heart-sayings-db-secret
+                  key: MYSQL_USER
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: heart-sayings-db-secret
+                  key: MYSQL_PASSWORD
+            - name: MYSQL_DB
+              valueFrom:
+                secretKeyRef:
+                  name: heart-sayings-db-secret
+                  key: MYSQL_DB
+            - name: MYSQL_DATABASE_CHARSET
+              value: utf8mb4
+            - name: MYSQL_CHARSET
+              value: utf8mb4
+            - name: FLASK_ENV
+              value: production
+            - name: FLASK_DEBUG
+              value: "False"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 20
+            timeoutSeconds: 3
+            failureThreshold: 3
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
