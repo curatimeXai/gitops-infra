@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: worldhealthmap-frontend
-          image: ghcr.io/curatimexai/nightingale-worldhealthmap:latest
+          image: ghcr.io/curatimexai/nightingale-worldhealthmap:851f9e98ad34fcb99845945eef1190ddcf53498f
           ports:
             - containerPort: 80
