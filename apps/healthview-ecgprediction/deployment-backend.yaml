@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: ecgprediction-backend
-          image: ghcr.io/curatimexai/nightingale-ecgprediction-backend:latest
+          image: ghcr.io/curatimexai/nightingale-ecgprediction-backend:f5e9d55125ddee0d560897866f03d6cf8604315b
           envFrom:
             - secretRef:
                 name: ecgprediction-secret
