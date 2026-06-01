@@ -13,7 +13,7 @@ spec:
   tls:
     - hosts:
         - lifesaver.test.nightingaleheart.com
-      secretName: heartaware-tls
+      secretName: lifesaver-tls
   rules:
     - host: lifesaver.test.nightingaleheart.com
       http:
