@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ecgprediction-ingress
+  namespace: ecgprediction
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - ecgprediction.test.nightingaleheart.com
+        - api.ecgprediction.test.nightingaleheart.com
+      secretName: ecgprediction-tls
+  rules:
+    - host: ecgprediction.test.nightingaleheart.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ecgprediction-frontend-service
+                port:
+                  number: 80
+    - host: api.ecgprediction.test.nightingaleheart.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ecgprediction-backend-service
+                port:
+                  number: 8000

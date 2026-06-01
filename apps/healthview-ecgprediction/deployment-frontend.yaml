@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecgprediction-frontend
+  namespace: ecgprediction
+  labels:
+    app: ecgprediction-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ecgprediction-frontend
+  template:
+    metadata:
+      labels:
+        app: ecgprediction-frontend
+    spec:
+      containers:
+        - name: ecgprediction-frontend
+          image: ghcr.io/curatimexai/nightingale-ecgprediction-frontend:latest
+          ports:
+            - containerPort: 80

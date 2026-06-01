@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecgprediction-backend
+  namespace: ecgprediction
+  labels:
+    app: ecgprediction-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ecgprediction-backend
+  template:
+    metadata:
+      labels:
+        app: ecgprediction-backend
+    spec:
+      containers:
+        - name: ecgprediction-backend
+          image: ghcr.io/curatimexai/nightingale-ecgprediction-backend:latest
+          envFrom:
+            - secretRef:
+                name: ecgprediction-secret
+          ports:
+            - containerPort: 8000
