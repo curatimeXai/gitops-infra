@@ -19,6 +19,8 @@ spec:
         app.kubernetes.io/component: backend
         app.kubernetes.io/part-of: nightingale-lifesaver
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
         - name: backend
           image: ghcr.io/curatimexai/nightingale-lifesaver-backend:latest
