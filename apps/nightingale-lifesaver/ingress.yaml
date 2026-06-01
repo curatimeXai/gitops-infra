@@ -6,6 +6,8 @@ metadata:
   labels:
     app.kubernetes.io/name: nightingale-lifesaver
     app.kubernetes.io/part-of: nightingale-lifesaver
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: nginx
   tls:
