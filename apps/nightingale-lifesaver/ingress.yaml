@@ -1,0 +1,43 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nightingale-lifesaver
+  namespace: nightingale-lifesaver
+  labels:
+    app.kubernetes.io/name: nightingale-lifesaver
+    app.kubernetes.io/part-of: nightingale-lifesaver
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - lifesaver.test.nightingaleheart.com
+  rules:
+    - host: lifesaver.test.nightingaleheart.com
+      http:
+        paths:
+          # React frontend uses REACT_APP_CHATBOT_URL + /api/...
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: nightingale-lifesaver-backend
+                port:
+                  number: 3000
+
+          # Direct Rasa REST webhook, useful if needed externally.
+          - path: /webhooks
+            pathType: Prefix
+            backend:
+              service:
+                name: nightingale-lifesaver-backend
+                port:
+                  number: 5005
+
+          # Frontend must stay last because it catches all remaining paths.
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nightingale-lifesaver-frontend
+                port:
+                  number: 80

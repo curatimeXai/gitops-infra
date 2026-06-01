@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nightingale-lifesaver-backend
+  namespace: nightingale-lifesaver
+  labels:
+    app.kubernetes.io/name: nightingale-lifesaver-backend
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/part-of: nightingale-lifesaver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: nightingale-lifesaver-backend
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: nightingale-lifesaver-backend
+        app.kubernetes.io/component: backend
+        app.kubernetes.io/part-of: nightingale-lifesaver
+    spec:
+      containers:
+        - name: backend
+          image: ghcr.io/curatimexai/nightingale-lifesaver-backend:latest
+          imagePullPolicy: Always
+          ports:
+            - name: api
+              containerPort: 3000
+            - name: rasa
+              containerPort: 5005
+          envFrom:
+            - secretRef:
+                name: lifesaver-backend-secret
+          resources:
+            requests:
+              cpu: 250m
+              memory: 768Mi
+            limits:
+              cpu: 1000m
+              memory: 2Gi

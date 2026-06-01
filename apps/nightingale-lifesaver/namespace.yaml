@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nightingale-lifesaver
+  labels:
+    app.kubernetes.io/name: nightingale-lifesaver
+    app.kubernetes.io/part-of: nightingale

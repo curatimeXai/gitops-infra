@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nightingale-lifesaver-frontend
+  namespace: nightingale-lifesaver
+  labels:
+    app.kubernetes.io/name: nightingale-lifesaver-frontend
+    app.kubernetes.io/component: frontend
+    app.kubernetes.io/part-of: nightingale-lifesaver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: nightingale-lifesaver-frontend
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: nightingale-lifesaver-frontend
+        app.kubernetes.io/component: frontend
+        app.kubernetes.io/part-of: nightingale-lifesaver
+    spec:
+      containers:
+        - name: frontend
+          image: ghcr.io/curatimexai/nightingale-lifesaver-frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 20
+            periodSeconds: 20
+            timeoutSeconds: 3
+            failureThreshold: 3
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
