@@ -15,6 +15,23 @@ spec:
         controller:
           service:
             type: LoadBalancer
+            annotations:
+              service.beta.kubernetes.io/upcloud-load-balancer-config: |
+                {
+                  "frontends": [
+                    { "name": "http", "mode": "tcp" },
+                    { "name": "https", "mode": "tcp" }
+                  ],
+                  "backends": [
+                    { "name": "https", "properties": { "outbound_proxy_protocol": "v2" } },
+                    { "name": "http", "properties": { "outbound_proxy_protocol": "v2" } }
+                  ]
+                }
+          config:
+            use-forwarded-headers: "true"
+            compute-full-forwarded-for: "true"
+            use-proxy-protocol: "true"
+            real-ip-header: "proxy_protocol"
   destination:
     server: https://kubernetes.default.svc
     namespace: ingress-nginx
