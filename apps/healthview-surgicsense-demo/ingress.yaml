@@ -1,0 +1,62 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: healthview-surgicsense-demo
+  namespace: healthview-surgicsense-demo
+  labels:
+    app.kubernetes.io/name: healthview-surgicsense-demo
+    app.kubernetes.io/part-of: healthview
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - surgicsense.test.nightingaleheart.com
+      secretName: surgicsense-tls
+  rules:
+    - host: surgicsense.test.nightingaleheart.com
+      http:
+        paths:
+          - path: /docs
+            pathType: Prefix
+            backend:
+              service:
+                name: healthview-surgicsense-demo-backend
+                port:
+                  number: 3001
+          - path: /openapi.json
+            pathType: Exact
+            backend:
+              service:
+                name: healthview-surgicsense-demo-backend
+                port:
+                  number: 3001
+          - path: /upload
+            pathType: Prefix
+            backend:
+              service:
+                name: healthview-surgicsense-demo-backend
+                port:
+                  number: 3001
+          - path: /valid_extensions
+            pathType: Exact
+            backend:
+              service:
+                name: healthview-surgicsense-demo-backend
+                port:
+                  number: 3001
+          - path: /expected_formats
+            pathType: Exact
+            backend:
+              service:
+                name: healthview-surgicsense-demo-backend
+                port:
+                  number: 3001
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: healthview-surgicsense-demo-frontend
+                port:
+                  number: 80

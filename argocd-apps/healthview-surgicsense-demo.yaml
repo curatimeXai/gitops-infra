@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: healthview-surgicsense-demo
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:curatimeXai/gitops-infra.git
+    targetRevision: HEAD
+    path: apps/healthview-surgicsense-demo
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: healthview-surgicsense-demo
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
