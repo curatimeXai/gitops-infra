@@ -16,7 +16,7 @@ spec:
         app: ecgprediction-backend
     spec:
       imagePullSecrets:
-          - name: ghcr-secret
+        - name: ghcr-secret
       containers:
         - name: ecgprediction-backend
           image: ghcr.io/curatimexai/nightingale-ecgprediction-backend:f5e9d55125ddee0d560897866f03d6cf8604315b

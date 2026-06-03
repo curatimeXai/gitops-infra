@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aiwhatif-backend
+  name: aiwhatif-backend-r
   namespace: ai-whatif
   labels:
-    app: aiwhatif-backend
+    app: aiwhatif-backend-r
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: aiwhatif-backend
+      app: aiwhatif-backend-r
   template:
     metadata:
       labels:
-        app: aiwhatif-backend
+        app: aiwhatif-backend-r
     spec:
       imagePullSecrets:
-          - name: ghcr-secret
+        - name: ghcr-secret
       containers:
-        - name: aiwhatif-backend
-          image: ghcr.io/curatimexai/nightingale-aiwhatif-backend:d0bd330d1a5634ff5b36a05d8b5f5358f6cefbb5
+        - name: aiwhatif-backend-r
+          image: ghcr.io/curatimexai/nightingale-aiwhatif-backend-r:d0bd330d1a5634ff5b36a05d8b5f5358f6cefbb5
           envFrom:
             - secretRef:
                 name: aiwhatif-secret
