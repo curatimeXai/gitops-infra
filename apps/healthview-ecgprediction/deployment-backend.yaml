@@ -25,5 +25,4 @@ spec:
                 name: ecgprediction-secret
           ports:
             - containerPort: 8000
-      imagePullSecrets:
-        - name: ecgprediction-secret
+

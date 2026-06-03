@@ -22,5 +22,4 @@ spec:
           image: ghcr.io/curatimexai/nightingale-ecgprediction-frontend:f5e9d55125ddee0d560897866f03d6cf8604315b
           ports:
             - containerPort: 80
-      imagePullSecrets:
-        - name: ecgprediction-secret
+
