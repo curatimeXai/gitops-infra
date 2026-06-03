@@ -13,6 +13,8 @@ spec:
       labels:
         app: heartaware-frontend
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
         - name: heartaware-frontend
           image: ghcr.io/curatimexai/nightingale-heartaware-frontend:d2a5dc22fd91a0a30ce219aa4b63de03f7083b92

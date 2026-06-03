@@ -15,6 +15,8 @@ spec:
       labels:
         app: pollutionmap-frontend
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
         - name: pollutionmap-frontend
           image: ghcr.io/curatimexai/nightingale-pollutionmap-frontend:60627b7fadc44cda89720d2b96ff9d17e58388a7

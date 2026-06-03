@@ -17,6 +17,8 @@ spec:
         app.kubernetes.io/name: healthmap-heart-sayings
         app.kubernetes.io/part-of: healthmap
     spec:
+      imagePullSecrets:
+          - name: ghcr-secret
       containers:
         - name: heart-sayings
           image: ghcr.io/curatimexai/heart-sayings:latest

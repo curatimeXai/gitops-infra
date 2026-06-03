@@ -13,6 +13,8 @@ spec:
       labels:
         app: echoexplore-frontend
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
         - name: echoexplore-frontend
           image: ghcr.io/curatimexai/echoexplore-frontend:084b5981a2c2aa0fa0e59cb72d384de57653f803
