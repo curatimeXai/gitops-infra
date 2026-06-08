@@ -1,10 +1,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: healthview-surgicsense-demo
-  namespace: healthview-surgicsense-demo
+  name: healthview-surgicsense
+  namespace: healthview-surgicsense
   labels:
-    app.kubernetes.io/name: healthview-surgicsense-demo
+    app.kubernetes.io/name: healthview-surgicsense
     app.kubernetes.io/part-of: healthview
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
@@ -22,41 +22,41 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: healthview-surgicsense-demo-backend
+                name: healthview-surgicsense-backend
                 port:
                   number: 3001
           - path: /openapi.json
             pathType: Exact
             backend:
               service:
-                name: healthview-surgicsense-demo-backend
+                name: healthview-surgicsense-backend
                 port:
                   number: 3001
           - path: /upload
             pathType: Prefix
             backend:
               service:
-                name: healthview-surgicsense-demo-backend
+                name: healthview-surgicsense-backend
                 port:
                   number: 3001
           - path: /valid_extensions
             pathType: Exact
             backend:
               service:
-                name: healthview-surgicsense-demo-backend
+                name: healthview-surgicsense-backend
                 port:
                   number: 3001
           - path: /expected_formats
             pathType: Exact
             backend:
               service:
-                name: healthview-surgicsense-demo-backend
+                name: healthview-surgicsense-backend
                 port:
                   number: 3001
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: healthview-surgicsense-demo-frontend
+                name: healthview-surgicsense-frontend
                 port:
                   number: 80

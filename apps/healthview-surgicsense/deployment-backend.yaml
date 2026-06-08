@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: healthview-surgicsense-demo-backend
-  namespace: healthview-surgicsense-demo
+  name: healthview-surgicsense-backend
+  namespace: healthview-surgicsense
   labels:
-    app.kubernetes.io/name: healthview-surgicsense-demo-backend
+    app.kubernetes.io/name: healthview-surgicsense-backend
     app.kubernetes.io/component: backend
-    app.kubernetes.io/part-of: healthview-surgicsense-demo
+    app.kubernetes.io/part-of: healthview-surgicsense
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: healthview-surgicsense-demo-backend
+      app.kubernetes.io/name: healthview-surgicsense-backend
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: healthview-surgicsense-demo-backend
+        app.kubernetes.io/name: healthview-surgicsense-backend
         app.kubernetes.io/component: backend
-        app.kubernetes.io/part-of: healthview-surgicsense-demo
+        app.kubernetes.io/part-of: healthview-surgicsense
     spec:
       imagePullSecrets:
         - name: ghcr-secret
       containers:
         - name: backend
-          image: ghcr.io/curatimexai/healthview-surgicsense-demo-backend:latest
+          image: ghcr.io/curatimexai/healthview-surgicsense-backend:latest
           imagePullPolicy: Always
           ports:
             - name: api

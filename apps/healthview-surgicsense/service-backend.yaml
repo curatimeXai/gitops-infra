@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: healthview-surgicsense-backend
+  namespace: healthview-surgicsense
+  labels:
+    app.kubernetes.io/name: healthview-surgicsense-backend
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/part-of: healthview-surgicsense
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: healthview-surgicsense-backend
+  ports:
+    - name: api
+      port: 3001
+      targetPort: api

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: healthview-surgicsense-demo
+  name: healthview-surgicsense
   labels:
-    app.kubernetes.io/name: healthview-surgicsense-demo
+    app.kubernetes.io/name: healthview-surgicsense
     app.kubernetes.io/part-of: healthview
