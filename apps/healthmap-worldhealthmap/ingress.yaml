@@ -9,10 +9,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - worldhealthmap.test.nightingaleheart.com
+        - worldhealthmap.nightingaleheart.com
       secretName: worldhealthmap-tls
   rules:
-    - host: worldhealthmap.test.nightingaleheart.com
+    - host: worldhealthmap.nightingaleheart.com
       http:
         paths:
           - path: /

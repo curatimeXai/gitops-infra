@@ -12,10 +12,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - surgicsense.test.nightingaleheart.com
+        - surgicsense.nightingaleheart.com
       secretName: surgicsense-tls
   rules:
-    - host: surgicsense.test.nightingaleheart.com
+    - host: surgicsense.nightingaleheart.com
       http:
         paths:
           - path: /docs

@@ -11,10 +11,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - heartaware.test.nightingaleheart.com
+        - heartaware.nightingaleheart.com
       secretName: heartaware-tls
   rules:
-    - host: heartaware.test.nightingaleheart.com
+    - host: heartaware.nightingaleheart.com
       http:
         paths:
           - path: /

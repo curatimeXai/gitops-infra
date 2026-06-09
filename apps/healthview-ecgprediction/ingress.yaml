@@ -9,11 +9,11 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - ecgprediction.test.nightingaleheart.com
-        - api.ecgprediction.test.nightingaleheart.com
+        - ecgprediction.nightingaleheart.com
+        - api.ecgprediction.nightingaleheart.com
       secretName: ecgprediction-tls
   rules:
-    - host: ecgprediction.test.nightingaleheart.com
+    - host: ecgprediction.nightingaleheart.com
       http:
         paths:
           - path: /
@@ -23,7 +23,7 @@ spec:
                 name: ecgprediction-frontend-service
                 port:
                   number: 80
-    - host: api.ecgprediction.test.nightingaleheart.com
+    - host: api.ecgprediction.nightingaleheart.com
       http:
         paths:
           - path: /

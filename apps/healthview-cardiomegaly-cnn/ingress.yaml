@@ -9,11 +9,11 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - cardiomegaly.test.nightingaleheart.com
-        - api-cardiomegaly.test.nightingaleheart.com
+        - cardiomegaly.nightingaleheart.com
+        - api-cardiomegaly.nightingaleheart.com
       secretName: cardiomegaly-tls
   rules:
-    - host: cardiomegaly.test.nightingaleheart.com
+    - host: cardiomegaly.nightingaleheart.com
       http:
         paths:
           - path: /
@@ -23,7 +23,7 @@ spec:
                 name: cardiomegaly-frontend-service
                 port:
                   number: 80
-    - host: api-cardiomegaly.test.nightingaleheart.com
+    - host: api-cardiomegaly.nightingaleheart.com
       http:
         paths:
           - path: /

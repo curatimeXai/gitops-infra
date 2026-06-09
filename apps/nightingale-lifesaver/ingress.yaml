@@ -14,10 +14,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - lifesaver.test.nightingaleheart.com
+        - lifesaver.nightingaleheart.com
       secretName: lifesaver-tls
   rules:
-    - host: lifesaver.test.nightingaleheart.com
+    - host: lifesaver.nightingaleheart.com
       http:
         paths:
           # React frontend uses REACT_APP_CHATBOT_URL + /api/...
