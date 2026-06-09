@@ -19,7 +19,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: ecgprediction-frontend
-          image: ghcr.io/curatimexai/nightingale-ecgprediction-frontend:22223fde191523b10c08759d875d49e9090b45e1
+          image: ghcr.io/curatimexai/nightingale-ecgprediction-frontend:dbf626b296544e0b20176610d201cb85f51653c5
           ports:
             - containerPort: 80
 
