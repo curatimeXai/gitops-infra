@@ -19,6 +19,6 @@ spec:
         - name: ghcr-secret
       containers:
         - name: worldhealthmap-frontend
-          image: ghcr.io/curatimexai/nightingale-worldhealthmap:851f9e98ad34fcb99845945eef1190ddcf53498f
+          image: ghcr.io/curatimexai/nightingale-worldhealthmap:114ee9faef6533b7bde636a3371e49102e281b8c
           ports:
             - containerPort: 80
