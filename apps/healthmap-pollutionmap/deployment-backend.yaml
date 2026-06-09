@@ -19,7 +19,7 @@ spec:
           - name: ghcr-secret
       containers:
         - name: pollutionmap-backend
-          image: ghcr.io/curatimexai/nightingale-pollutionmap-backend:60627b7fadc44cda89720d2b96ff9d17e58388a7
+          image: ghcr.io/curatimexai/nightingale-pollutionmap-backend:53ce43c434f0b6f08bf6163730f0a8f69025dadc
           envFrom:
             - secretRef:
                 name: pollutionmap-secret
