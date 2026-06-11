@@ -13,46 +13,12 @@ spec:
   tls:
     - hosts:
         - surgicsense.nightingaleheart.com
+        - api.surgicsense.nightingaleheart.com
       secretName: surgicsense-tls
   rules:
     - host: surgicsense.nightingaleheart.com
       http:
         paths:
-          - path: /docs
-            pathType: Prefix
-            backend:
-              service:
-                name: healthview-surgicsense-backend
-                port:
-                  number: 3001
-          - path: /openapi.json
-            pathType: Exact
-            backend:
-              service:
-                name: healthview-surgicsense-backend
-                port:
-                  number: 3001
-          - path: /upload
-            pathType: Prefix
-            backend:
-              service:
-                name: healthview-surgicsense-backend
-                port:
-                  number: 3001
-          - path: /valid_extensions
-            pathType: Exact
-            backend:
-              service:
-                name: healthview-surgicsense-backend
-                port:
-                  number: 3001
-          - path: /expected_formats
-            pathType: Exact
-            backend:
-              service:
-                name: healthview-surgicsense-backend
-                port:
-                  number: 3001
           - path: /
             pathType: Prefix
             backend:
@@ -60,3 +26,13 @@ spec:
                 name: healthview-surgicsense-frontend
                 port:
                   number: 80
+    - host: api.surgicsense.nightingaleheart.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: healthview-surgicsense-backend
+                port:
+                  number: 3001
