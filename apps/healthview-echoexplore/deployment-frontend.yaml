@@ -17,7 +17,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: echoexplore-frontend
-          image: ghcr.io/curatimexai/echoexplore-frontend:084b5981a2c2aa0fa0e59cb72d384de57653f803
+          image: ghcr.io/curatimexai/echoexplore-frontend:0fe4996ea672eb481ba13bbf9eaa90ecd2c79337
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
