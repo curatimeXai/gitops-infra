@@ -25,6 +25,8 @@ spec:
             - secretRef:
                 name: echoexplore-secret
                 optional: true
+            - secretRef:
+                name: echoexplore-aws-s3
           resources:
             requests:
               cpu: 250m
