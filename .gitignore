@@ -1,1 +1,2 @@
 apps/*/secret.yaml
+apps/*/upcloud-autoscaler.yaml
