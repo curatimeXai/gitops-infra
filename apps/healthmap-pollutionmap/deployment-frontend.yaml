@@ -6,7 +6,8 @@ metadata:
   labels:
     app: pollutionmap-frontend
 spec:
-  replicas: 2
+  replicas: 1
+  
   selector:
     matchLabels:
       app: pollutionmap-frontend
@@ -22,3 +23,8 @@ spec:
           image: ghcr.io/curatimexai/nightingale-pollutionmap-frontend:4a374aaf647747e76d6aedff30d06fdec692396b
           ports:
             - containerPort: 80
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            

@@ -35,8 +35,8 @@ spec:
                 name: lifesaver-backend-secret
           resources:
             requests:
-              cpu: 250m
-              memory: 768Mi
+              cpu: 300m
+              memory: 256Mi
             limits:
               cpu: 1000m
               memory: 2Gi

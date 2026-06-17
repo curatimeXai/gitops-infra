@@ -4,7 +4,7 @@ metadata:
   name: echoexplore-backend
   namespace: healthview-echoexplore
 spec:
-  replicas: 1
+  s
   selector:
     matchLabels:
       app: echoexplore-backend

@@ -6,7 +6,7 @@ metadata:
   labels:
     app: worldhealthmap-frontend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: worldhealthmap-frontend
@@ -22,3 +22,7 @@ spec:
           image: ghcr.io/curatimexai/nightingale-worldhealthmap:8573b0d16ca5837c9b849c4c0f0c81c44ad83e32
           ports:
             - containerPort: 80
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi

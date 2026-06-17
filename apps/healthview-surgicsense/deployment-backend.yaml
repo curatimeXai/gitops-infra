@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/component: backend
     app.kubernetes.io/part-of: healthview-surgicsense
 spec:
-  replicas: 1
+  
   selector:
     matchLabels:
       app.kubernetes.io/name: healthview-surgicsense-backend
@@ -49,8 +49,8 @@ spec:
             failureThreshold: 3
           resources:
             requests:
-              cpu: 500m
-              memory: 1Gi
+              cpu: 300m
+              memory: 256Mi
             limits:
               cpu: "2"
               memory: 4Gi

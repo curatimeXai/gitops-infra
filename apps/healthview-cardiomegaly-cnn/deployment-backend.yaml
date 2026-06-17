@@ -6,7 +6,7 @@ metadata:
   labels:
     app: cardiomegaly-backend
 spec:
-  replicas: 1
+  
   selector:
     matchLabels:
       app: cardiomegaly-backend

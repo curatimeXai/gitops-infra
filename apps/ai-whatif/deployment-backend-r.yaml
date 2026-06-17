@@ -6,7 +6,7 @@ metadata:
   labels:
     app: aiwhatif-backend-r
 spec:
-  replicas: 2
+  
   selector:
     matchLabels:
       app: aiwhatif-backend-r
@@ -25,3 +25,10 @@ spec:
                 name: aiwhatif-secret
           ports:
             - containerPort: 9000
+          resources:
+            requests:
+              cpu: 250m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
