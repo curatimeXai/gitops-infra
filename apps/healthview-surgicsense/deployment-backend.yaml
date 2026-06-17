@@ -23,7 +23,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: backend
-          image: ghcr.io/curatimexai/surgicsense-backend:latest
+          image: ghcr.io/curatimexai/surgicsense-backend:58becac7d58bb73e8f8fb99409c696575c9048d4
           imagePullPolicy: Always
           ports:
             - name: api
