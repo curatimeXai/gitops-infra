@@ -22,7 +22,7 @@ spec:
           image: ghcr.io/curatimexai/nightingale-ecgprediction-frontend:f894c19ae8418ac52a0e8039b5a79f9a444a6f46
           ports:
             - containerPort: 80
-          resource: 
+          resources: 
             requests:
               cpu: "100m"
               memory: "128Mi"
