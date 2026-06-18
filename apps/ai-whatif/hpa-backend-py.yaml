@@ -1,19 +1,19 @@
-apiVersion:  autoscaling/v2
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: aiwhatif-backend-py-hpa
   namespace: ai-whatif
 spec:
-   scaleTargetRef:
-      apiVersion: apps/v1
-      kind: Deployment
-      name: aiwhatif-backend-py
-   minReplicas: 1
-   maxReplicas: 6
-   metrics: 
-     - type: Resource
-       resources: 
-           name: cpu 
-           target:
-             type: Utilization
-             averageUtilization: 75
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: aiwhatif-backend-py
+  minReplicas: 1
+  maxReplicas: 6
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 75
