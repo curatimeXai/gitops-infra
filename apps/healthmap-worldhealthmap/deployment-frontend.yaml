@@ -26,3 +26,13 @@ spec:
             requests:
               cpu: 100m
               memory: 128Mi
+          livenessProbe:
+            tcpSocket:
+              port: 80
+            initialDelaySeconds: 20
+            periodSeconds: 30
+          readinessProbe:
+            tcpSocket:
+              port: 80      
+            initialDelaySeconds: 10
+            periodSeconds: 30
