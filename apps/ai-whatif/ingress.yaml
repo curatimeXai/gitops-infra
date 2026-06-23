@@ -9,12 +9,12 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - aiwhatif.nightingaleheart.com
+        - healthyheart.nightingaleheart.com
         - api.aiwhatif.nightingaleheart.com
         - api-python.aiwhatif.nightingaleheart.com
       secretName: aiwhatif-tls
   rules:
-    - host: aiwhatif.nightingaleheart.com
+    - host: healthyheart.nightingaleheart.com
       http:
         paths:
           - path: /
