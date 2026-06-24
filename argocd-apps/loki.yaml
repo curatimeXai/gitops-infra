@@ -6,16 +6,20 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://grafana.github.io/helm-charts
-    chart: loki
-    targetRevision: 7.0.0
-    helm:
+    - repoURL: https://grafana.github.io/helm-charts
+      chart: loki
+      targetRevision: 7.0.0
+      helm:
       releaseName: loki
       valueFiles:
-        - values-loki.yaml
+       - $values/argocd-apps/values-loki.yaml
+    - repoURL: https://github.com/curatimeXai/gitops-infra.git
+      targetRevision: HEAD
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
+    
   syncPolicy:
     automated:
       prune: true
