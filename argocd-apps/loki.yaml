@@ -11,6 +11,8 @@ spec:
     targetRevision: 7.0.0
     helm:
       releaseName: loki
+      valueFiles:
+        - values-loki.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring

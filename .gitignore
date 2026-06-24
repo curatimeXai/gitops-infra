@@ -1,2 +1,3 @@
 apps/*/secret.yaml
 apps/*/upcloud-autoscaler.yaml
+argocd-apps/secret-*.yaml
