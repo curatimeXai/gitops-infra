@@ -12,7 +12,7 @@ loki:
      http_config: 
        insecure_skip_verify: false
      s3ForcePathStyle: true
-  schema_config:
+  schemaConfig:
          configs:
            - from: 2026-06-01
              object_store: s3
