@@ -13,6 +13,7 @@ spec:
        releaseName: loki
        valueFiles:
          - $values/argocd-apps/values-loki.yaml
+       
     - repoURL: https://github.com/curatimeXai/gitops-infra.git
       targetRevision: HEAD
       ref: values
