@@ -21,6 +21,9 @@ loki:
              index:
               prefix: loki_index_
               period: 24h
+  gateway:
+   nginxConfig:
+     resolver: "local=on"
   extraEnvFrom:
 
     - secretRef:
