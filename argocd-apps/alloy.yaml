@@ -5,12 +5,18 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: https://grafana.github.io/helm-charts
-    chart: alloy
-    targetRevision: 1.10.0
-    helm:
-      releaseName: alloy
+  sources:
+    - repoURL: https://grafana.github.io/helm-charts
+      chart: alloy
+      targetRevision: 1.10.0
+      helm:
+       releaseName: alloy
+       valueFiles:
+         - $values/argocd-apps/values-alloy.yaml
+    - repoURL: https://github.com/curatimeXai/gitops-infra.git
+      targetRevision: HEAD
+      ref: values
+       
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
