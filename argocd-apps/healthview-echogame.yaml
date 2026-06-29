@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: healthview-echogame
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:curatimeXai/gitops-infra.git
+    targetRevision: HEAD
+    path: apps/healthview-echogame
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: healthview-echogame
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

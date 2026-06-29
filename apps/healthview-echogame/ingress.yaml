@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: echogame-ingress
+  namespace: healthview-echogame
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - echogame.nightingaleheart.com
+        - api-echogame.nightingaleheart.com
+      secretName: echogame-tls
+  rules:
+    - host: echogame.nightingaleheart.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: echogame-frontend-service
+                port:
+                  number: 80
+    - host: api-echogame.nightingaleheart.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: echogame-backend-service
+                port:
+                  number: 5000
