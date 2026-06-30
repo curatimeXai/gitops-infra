@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthmap-adaptatutor-backend
+  namespace: healthmap-adaptatutor
+  labels:
+    app.kubernetes.io/name: healthmap-adaptatutor-backend
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/part-of: healthmap-adaptatutor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: healthmap-adaptatutor-backend
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: healthmap-adaptatutor-backend
+        app.kubernetes.io/component: backend
+        app.kubernetes.io/part-of: healthmap-adaptatutor
+    spec:
+      imagePullSecrets:
+        - name: ghcr-secret
+      containers:
+        - name: backend
+          image: ghcr.io/curatimexai/healthmap-adaptatutor-backend:latest
+          imagePullPolicy: Always
+          ports:
+            - name: api
+              containerPort: 8000
+          envFrom:
+            - secretRef:
+                name: adaptatutor-backend-secret
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: api
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: api
+            initialDelaySeconds: 90
+            periodSeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 3
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              cpu: "1"
+              memory: 2Gi

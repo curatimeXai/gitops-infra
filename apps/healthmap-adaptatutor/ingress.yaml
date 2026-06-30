@@ -1,0 +1,40 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: healthmap-adaptatutor
+  namespace: healthmap-adaptatutor
+  labels:
+    app.kubernetes.io/name: healthmap-adaptatutor
+    app.kubernetes.io/part-of: healthmap-adaptatutor
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - adaptatutor.nightingaleheart.com
+      secretName: adaptatutor-tls
+    - hosts:
+        - api-adaptatutor.nightingaleheart.com
+      secretName: api-adaptatutor-tls
+  rules:
+    - host: adaptatutor.nightingaleheart.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: healthmap-adaptatutor-frontend
+                port:
+                  number: 80
+    - host: api-adaptatutor.nightingaleheart.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: healthmap-adaptatutor-backend
+                port:
+                  number: 8000

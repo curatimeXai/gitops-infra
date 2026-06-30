@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: healthmap-adaptatutor-frontend
+  namespace: healthmap-adaptatutor
+  labels:
+    app.kubernetes.io/name: healthmap-adaptatutor-frontend
+    app.kubernetes.io/component: frontend
+    app.kubernetes.io/part-of: healthmap-adaptatutor
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: healthmap-adaptatutor-frontend
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
