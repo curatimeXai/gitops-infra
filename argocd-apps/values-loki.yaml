@@ -12,7 +12,7 @@ loki:
      secretAccessKey: ${S3_SECRET_ACCESS_KEY}
      http_config: 
        insecure_skip_verify: false
-     s3ForcePathStyle: true
+     s3ForcePathStyle: false
   schemaConfig:
     configs:
       - from: 2026-06-01
@@ -22,11 +22,14 @@ loki:
         index:
           prefix: loki_index_
           period: 24h
-  extraEnvFrom:
-    - secretRef:
-        name: secret-loki
+  
 
 global:
   dnsService: coredns
+  extraEnvFrom:
+    - secretRef:
+        name: secret-loki
+  extraArgs:
+    - "-config.expand-env=true"
 
     
