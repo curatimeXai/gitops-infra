@@ -46,6 +46,12 @@ alloy:
           action        = "replace"
           target_label  = "app"
         }
+
+        rule { 
+          source_labels = ["__meta_kubernetes_pod_phase"]
+          regex  = "Running"
+          action = "keep"
+          }
       }
 
       loki.source.kubernetes "pod_logs" {
