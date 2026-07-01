@@ -1,0 +1,23 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata: 
+  name: repeated-oom-kill
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+    - name: repeated-oom-kill
+      rules:
+        - alert: RepeatedOOMKill
+          expr: |
+            sum by (namespace) (
+              increase(kube_pod_container_status_restart_total[15m])
+              * on(namespace, pod, container) group_left
+              (kube_pod_container_status_terminated_reason{reason="OOMKilled"} == 1) 
+              >= 2
+          for: 10m
+          labels:
+            severity: critical
+          annotations:
+            summary: "{{ $labels.namespace }} : {{ $value }} OOMKills en 15 min — Increase limit or investigate memory usage"
