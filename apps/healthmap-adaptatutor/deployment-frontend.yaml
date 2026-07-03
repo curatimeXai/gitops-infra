@@ -23,7 +23,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: frontend
-          image: ghcr.io/curatimexai/healthmap-adaptatutor-frontend:3936e49b94c170e102622ec505278e167b540080
+          image: ghcr.io/curatimexai/healthmap-adaptatutor-frontend:3936e49
           imagePullPolicy: Always
           ports:
             - name: http
