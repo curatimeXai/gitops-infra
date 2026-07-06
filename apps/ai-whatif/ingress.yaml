@@ -12,8 +12,20 @@ spec:
         - healthyheart.nightingaleheart.com
         - api.aiwhatif.nightingaleheart.com
         - api-python.aiwhatif.nightingaleheart.com
+        - aiwhatif.nightingaleheart.com
       secretName: aiwhatif-tls
   rules:
+
+    - host: aiwhatif.nightingaleheart.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: aiwhatif-frontend-service
+                port:
+                  number: 80
     - host: healthyheart.nightingaleheart.com
       http:
         paths:

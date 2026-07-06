@@ -1,0 +1,41 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata: 
+  name: workload-health-rule
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+    - name: workload-health
+      rules:
+        - alert: RepeatedOOMKill
+          expr: |
+            sum by (namespace) (
+              increase(kube_pod_container_status_restart_total[15m])
+              * on(namespace, pod, container) group_left
+              (kube_pod_container_status_terminated_reason{reason="OOMKilled"} == 1) 
+              >= 2
+          for: 10m
+          labels:
+            severity: critical
+          annotations:
+            summary: "{{ $labels.namespace }} : {{ $value }} OOMKills en 15 min — Increase limit or investigate memory usage"
+        - alert: Deployment-Down
+          expr:  |
+              kube_deployment_status_replicas_available{job="kube-state-metrics"} == 0
+              and
+              kube_deployment_spec_replicas{job="kube-state-metrics"} > 0
+          for: 5m
+          labels:
+            severity: critical
+            annotations:
+              summary: "{{ $labels.namespace }}/{{ $labels.deployment }} : no replicas ready — Deployment is down"
+          
+        - alert : CA-Down
+          expr: sum by (pod) (kube_pod_status_phase{phase=~"Pending"}) > 0
+          for: 15m
+          labels: 
+            severity: critical
+          annotations:
+            summary: "$value pods are in Pending state for more than 15 minutes — Check cluster-autoscaler logs and node resources"

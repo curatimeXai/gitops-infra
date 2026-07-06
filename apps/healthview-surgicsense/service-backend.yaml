@@ -13,5 +13,5 @@ spec:
     app.kubernetes.io/name: healthview-surgicsense-backend
   ports:
     - name: api
-      port: 3001
+      port: 8000
       targetPort: api
