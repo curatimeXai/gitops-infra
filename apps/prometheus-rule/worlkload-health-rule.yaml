@@ -13,9 +13,9 @@ spec:
           expr: |
             sum by (namespace) (
               increase(kube_pod_container_status_restarts_total[15m])
-              * on(namespace, pod, container) group_left
-              (kube_pod_container_status_last_terminated_reason{reason="OOMKilled"} == 1))
-              >= 2
+              and on(namespace, pod, container)
+              kube_pod_container_status_last_terminated_reason{reason="OOMKilled"} == 1
+            ) >= 2
           for: 10m
           labels:
             severity: critical
