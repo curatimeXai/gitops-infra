@@ -28,7 +28,7 @@ alertmanager:
        time_intervals:
          - weekdays: ['monday:friday']
            times:
-             - start_time: "9:00"
+             - start_time: "09:00"
                end_time: "18:00"
            location: "Europe/Berlin"
  
