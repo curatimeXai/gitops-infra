@@ -1,7 +1,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: Alertmanager
 metadata:
-  name: "alermanagerMatcherConfig"
+  name: alertmanager-matcher-config
   namespace: monitoring
 spec:
   alertmanagerConfigMatcherStrategy:
