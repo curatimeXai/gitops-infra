@@ -5,17 +5,13 @@ metadata:
   namespace: argocd
 spec: 
   project: default
-  sources :
-    - repoURL: https://prometheus-community.github.io/helm-charts
-      chart: kube-prometheus-stack
-      targetRevision: 87.0.1
-      helm:
-       releaseName: kube-prometheus-stack
-       valueFiles:
-         - $values/argocd-apps/values-prometheus.yaml
-    - repoURL: https://github.com/curatimeXai/gitops-infra.git
-      targetRevision: HEAD
-      ref: values
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    chart: kube-prometheus-stack
+    targetRevision: 87.0.1
+    helm:
+      releaseName: kube-prometheus-stack
+       
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring

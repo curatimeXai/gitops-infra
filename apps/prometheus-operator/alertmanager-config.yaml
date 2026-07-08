@@ -1,0 +1,41 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: alertmanager-rules-config
+  namespace: monitoring
+spec:
+  
+  receivers:
+     - name: "discord-receiver"
+       discordConfigs:
+         - sendResolved: true
+           apiURL:
+              name: prometheus-secret
+              key: DISCORD_WEBHOOK_URL
+            
+             
+        
+          
+  route:
+    receiver: "discord-receiver"
+    groupWait: 30s
+    groupInterval: 5m
+    repeatInterval: 3h
+    groupBy: ["namespace", "alertname"]
+    routes:
+      - receiver: "discord-receiver"
+        matchers:
+          - name: "severity"
+            value: "warning"
+            matchType: "="
+        activeTimeIntervals:
+          - business-hours
+
+  muteTimeIntervals:
+    - name: "business-hours"
+      timeIntervals:
+        - weekdays: ['monday:friday']
+          times:
+            - startTime: "07:00"
+              endTime: "16:00"
+ 
