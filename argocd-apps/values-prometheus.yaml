@@ -4,3 +4,12 @@ alertmanager:
       name: alertmanager-config
   alertmanagerConfigMatcherStrategy:
     type: "None"
+
+kubeScheduler:
+  enabled: false
+kubeControllerManager:
+  enabled: false
+kubeEtcd:
+  enabled: false
+kubeProxy:
+  enabled: false
