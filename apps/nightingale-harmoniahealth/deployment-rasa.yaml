@@ -23,7 +23,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: rasa
-          image: ghcr.io/curatimexai/nightingale-harmoniahealth-rasa:d655871
+          image: ghcr.io/curatimexai/nightingale-harmoniahealth-rasa:8c14c69
           imagePullPolicy: Always
           ports:
             - name: rasa
@@ -55,7 +55,7 @@ spec:
               cpu: "2"
               memory: 3Gi
         - name: actions
-          image: ghcr.io/curatimexai/nightingale-harmoniahealth-rasa-actions:d655871
+          image: ghcr.io/curatimexai/nightingale-harmoniahealth-rasa-actions:8c14c69
           imagePullPolicy: Always
           ports:
             - name: actions
