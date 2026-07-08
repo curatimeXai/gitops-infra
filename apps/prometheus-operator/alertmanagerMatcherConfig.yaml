@@ -6,7 +6,6 @@ metadata:
 spec:
   alertmanagerConfigMatcherStrategy:
     type: "None"
-  alertmanagerConfigSelector:
-    matchLabels:
-      alertmanagerConfig: alertmanager-rules-config
-  
+  alertmanagerConfiguration:
+    name:  alertmanager-rules-configs
+   
