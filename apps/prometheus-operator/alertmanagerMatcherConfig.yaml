@@ -7,5 +7,5 @@ spec:
   alertmanagerConfigMatcherStrategy:
     type: "None"
   alertmanagerConfiguration:
-    name:  alertmanager-rules-configs
+    name:  alertmanager-rules-config
    
