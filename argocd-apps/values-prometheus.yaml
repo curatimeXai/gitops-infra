@@ -2,8 +2,8 @@ alertmanager:
   alertmanagerSpec:
     alertmanagerConfiguration:
       name: alertmanager-config
-  alertmanagerConfigMatcherStrategy:
-    type: "None"
+    alertmanagerConfigMatcherStrategy:
+      type: "None"
 
 kubeScheduler:
   enabled: false
