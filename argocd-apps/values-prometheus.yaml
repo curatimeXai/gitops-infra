@@ -1,0 +1,6 @@
+alertmanager:
+  alertmanagerSpec:
+    alertmanagerConfiguration:
+      name: alertmanager-config
+  alertmanagerConfigMatcherStrategy:
+    type: "None"
