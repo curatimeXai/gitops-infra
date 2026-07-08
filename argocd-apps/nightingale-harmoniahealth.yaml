@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nightingale-harmoniahealth
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:curatimeXai/gitops-infra.git
+    targetRevision: HEAD
+    path: apps/nightingale-harmoniahealth
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: nightingale-harmoniahealth
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

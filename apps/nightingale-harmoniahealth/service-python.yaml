@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: harmoniahealth-python-service
+  namespace: nightingale-harmoniahealth
+  labels:
+    app.kubernetes.io/name: harmoniahealth-python
+    app.kubernetes.io/component: python-backend
+    app.kubernetes.io/part-of: nightingale-harmoniahealth
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: harmoniahealth-python
+  ports:
+    - name: http
+      port: 6989
+      targetPort: http

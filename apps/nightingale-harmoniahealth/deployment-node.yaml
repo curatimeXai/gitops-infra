@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: harmoniahealth-node
+  namespace: nightingale-harmoniahealth
+  labels:
+    app.kubernetes.io/name: harmoniahealth-node
+    app.kubernetes.io/component: node-backend
+    app.kubernetes.io/part-of: nightingale-harmoniahealth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: harmoniahealth-node
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: harmoniahealth-node
+        app.kubernetes.io/component: node-backend
+        app.kubernetes.io/part-of: nightingale-harmoniahealth
+    spec:
+      imagePullSecrets:
+        - name: ghcr-secret
+      containers:
+        - name: node
+          image: ghcr.io/curatimexai/nightingale-harmoniahealth-node:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 6987
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: NODE_PORT
+              value: "6987"
+            - name: PYTHON_SERVICE_URL
+              value: "http://harmoniahealth-python-service:6989"
+            - name: RASA_URL
+              value: "http://harmoniahealth-rasa-service:5005/webhooks/rest/webhook"
+            - name: DB_LOGGING
+              value: "false"
+          envFrom:
+            - secretRef:
+                name: harmoniahealth-secret
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 6
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 3
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: "1"
+              memory: 1Gi
