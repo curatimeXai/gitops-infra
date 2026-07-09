@@ -23,7 +23,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: python
-          image: ghcr.io/curatimexai/nightingale-harmoniahealth-python:8c14c69
+          image: ghcr.io/curatimexai/nightingale-harmoniahealth-python:451e581ebd38027f982f21423c3ccb54ea8ef6f4
           imagePullPolicy: Always
           ports:
             - name: http
