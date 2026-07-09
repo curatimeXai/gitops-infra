@@ -54,5 +54,5 @@ spec:
               endTime: "16:00"
     - name: "all-time"
       timeIntervals:
-        - weekdays: ['monday:sunday']
+        - weekdays: ['sunday:saturday']
  
