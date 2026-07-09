@@ -30,6 +30,20 @@ spec:
             matchType: "="
         activeTimeIntervals:
           - business-hours
+      - receiver: "discord-receiver"
+        matchers:
+          - name: "severity"
+            value: "none"
+            matchType: "="
+        muteTimeIntervals:
+          - all-time
+      - receiver: "discord-receiver"
+        matchers:
+          - name: "severity"
+            value: "info"
+            matchType: "="
+        activeTimeIntervals:
+          - business-hours
 
   muteTimeIntervals:
     - name: "business-hours"
@@ -38,4 +52,7 @@ spec:
           times:
             - startTime: "07:00"
               endTime: "16:00"
+    - name: "all-time"
+      timeIntervals:
+        - weekdays: ['monday:sunday']
  
