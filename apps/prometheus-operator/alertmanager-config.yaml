@@ -44,6 +44,20 @@ spec:
             matchType: "="
         activeTimeIntervals:
           - business-hours
+      - receiver: "discord-receiver"
+        matchers:
+          - name: "namespace"
+            value: "healthview-surgicsense"
+            matchType: "="
+        muteTimeIntervals:
+          - all-time
+      - receiver: "discord-receiver"
+        matchers:
+          - name: "namespace"
+            value: "nightingale-harmoniahealth"
+            matchType: "="
+        muteTimeIntervals:
+          - all-time
 
   muteTimeIntervals:
     - name: "business-hours"
