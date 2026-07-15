@@ -5,6 +5,7 @@ metadata:
   namespace: pollutionmap
   labels:
     app: pollutionmap-frontend
+    type: frontend
 spec:
   replicas: 1
   
@@ -15,6 +16,7 @@ spec:
     metadata:
       labels:
         app: pollutionmap-frontend
+        type: frontend
     spec:
       imagePullSecrets:
         - name: ghcr-secret

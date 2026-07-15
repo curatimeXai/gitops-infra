@@ -5,6 +5,7 @@ metadata:
   namespace: pollutionmap
   labels:
     app: pollutionmap-backend
+    type: backend 
 spec:
   selector: 
     matchLabels:
@@ -13,6 +14,7 @@ spec:
     metadata:
       labels:
         app: pollutionmap-backend
+        type: backend
     spec:
       imagePullSecrets:
           - name: ghcr-secret

@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: pollutionmap-network-policy-frontend
+  namespace: pollutionmap
+spec:
+  podSelector:
+    matchLabels:
+      type: frontend 
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+     - namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: ingress-nginx
+       ports:
+       - protocol: TCP
+         port: 80
+  
