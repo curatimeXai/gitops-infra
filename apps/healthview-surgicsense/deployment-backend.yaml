@@ -23,14 +23,16 @@ spec:
         - name: ghcr-secret
       containers:
         - name: backend
-          image: ghcr.io/curatimexai/surgicsense-backend:418a77d3a407d679156385ebfd600240832b7a6d
+          image: ghcr.io/curatimexai/segmentation-backend:latest
           imagePullPolicy: Always
           ports:
             - name: api
               containerPort: 8000
           envFrom:
             - secretRef:
-                name: surgicsense-backend-secret
+                name: surgicsense-secret
+            - configMapRef:
+                name: surgicsense-configmap
           readinessProbe:
             httpGet:
               path: /docs

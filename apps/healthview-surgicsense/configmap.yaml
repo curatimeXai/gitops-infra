@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: 
+  name: surgicsense-configmap
+  namespace: healthview-surgicsense
+data:
+  S3_ENDPOINT_URL: "https://8ps1i-private.upcloudobjects.com"
+  S3_BUCKET_NAME: "surgicsense"
+  ACCESS_TOKEN_EXPIRE_MINUTES: "60"
+  PASSWORD_RESET_TOKEN_EXPIRE_MINUTES: "30"
+  RESET_PASSWORD_URL: "https://your-frontend.example/reset-password"
+  JWT_ALGORITHM: "HS256"
