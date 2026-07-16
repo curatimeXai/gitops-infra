@@ -53,6 +53,14 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Free up disk space
+        run: |
+          echo "Disk before cleanup:"; df -h /
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/.ghcup \
+                      /usr/local/lib/android /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force || true
+          echo "Disk after cleanup:"; df -h /
+
       - name: Build and push frontend image
         if: inputs.frontend-context != ''
         uses: docker/build-push-action@v7
@@ -77,6 +85,7 @@ jobs:
           cd gitops-infra
           if [[ -n "${{ inputs.frontend-image }}" ]];
           then sed -i "s|image: ghcr.io/curatimexai/${{ inputs.frontend-image }}:.*|image: ghcr.io/curatimexai/${{ inputs.frontend-image }}:${{ github.sha }}|" apps/${{ inputs.app-name }}/deployment-frontend.yaml
+          fi
           if [[ -n "${{ inputs.backend-image }}" ]];
           then sed -i "s|image: ghcr.io/curatimexai/${{ inputs.backend-image }}:.*|image: ghcr.io/curatimexai/${{ inputs.backend-image }}:${{ github.sha }}|" apps/${{ inputs.app-name }}/deployment-backend.yaml
           fi 
