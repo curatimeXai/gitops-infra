@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata: 
-  name: heart-sayings-configMap
+  name: heart-sayings-configmap
   namespace: healthmap-heart-sayings
 data:
   MAIL_SERVER: "smtp.gmail.com"
