@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: 
+  name: heart-sayings-configMap
+  namespace: healthmap-heart-sayings
+data:
+  MAIL_SERVER: "smtp.gmail.com"
+  MAIL_FROM: "Heart Sayings - Nightingale Project"
+  MAIL_PORT: "587"
+  MYSQL_DB: "idioms"
+  MYSQL_HOST: "mysql-dbs-dpiqbpsmhehg.db.upclouddatabases.com"
+  MYSQL_CHARSET: "utf8mb4"
+  FLASK_ENV: "production"
+  FLASK_DEBUG: "False"
+  

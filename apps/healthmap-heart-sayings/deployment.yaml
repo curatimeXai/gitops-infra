@@ -26,40 +26,15 @@ spec:
           ports:
             - name: http
               containerPort: 80
-          env:
-            - name: MYSQL_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: heart-sayings-db-secret
-                  key: MYSQL_HOST
-            - name: MYSQL_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: heart-sayings-db-secret
-                  key: MYSQL_PORT
-            - name: MYSQL_USER
-              valueFrom:
-                secretKeyRef:
-                  name: heart-sayings-db-secret
-                  key: MYSQL_USER
-            - name: MYSQL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: heart-sayings-db-secret
-                  key: MYSQL_PASSWORD
-            - name: MYSQL_DB
-              valueFrom:
-                secretKeyRef:
-                  name: heart-sayings-db-secret
-                  key: MYSQL_DB
-            - name: MYSQL_DATABASE_CHARSET
-              value: utf8mb4
-            - name: MYSQL_CHARSET
-              value: utf8mb4
-            - name: FLASK_ENV
-              value: production
-            - name: FLASK_DEBUG
-              value: "False"
+          envFrom:
+            - secretRef:
+                name: secret-heart-sayings
+            - configMapRef:
+                name:  heart-sayings-configMap
+                
+             
+        
+            
           readinessProbe:
             httpGet:
               path: /health
