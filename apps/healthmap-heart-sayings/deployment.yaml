@@ -30,7 +30,7 @@ spec:
             - secretRef:
                 name: secret-heart-sayings
             - configMapRef:
-                name:  heart-sayings-configMap
+                name: heart-sayings-configMap
                 
              
         
