@@ -25,7 +25,7 @@ spec:
           imagePullPolicy: Always
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 5001
           envFrom:
             - secretRef:
                 name: secret-heart-sayings
