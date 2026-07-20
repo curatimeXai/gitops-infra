@@ -25,8 +25,8 @@ spec:
        protocol: ANY
      rules:
        dns:
-       - match Name: "8ps1i-private.upcloudobjects.com"
-       - match Name: "postgres-dbs-dpiqbpsmhehg.db.upclouddatabases.com"
+       - matchName: "8ps1i-private.upcloudobjects.com"
+       - matchName: "postgres-dbs-dpiqbpsmhehg.db.upclouddatabases.com"
  - toFQDNs:
     - matchName: "8ps1i-private.upcloudobjects.com"
    toPorts:
