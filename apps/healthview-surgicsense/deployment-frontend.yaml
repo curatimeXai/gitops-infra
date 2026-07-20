@@ -23,7 +23,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: frontend
-          image: ghcr.io/curatimexai/surgicsense-frontend:3aee9cf2b1dabde039ef7597e53fda102d22a63f
+          image: ghcr.io/curatimexai/surgicsense-frontend:676dc67c6ad2c231269a310ab6b702a12ca466ca
           imagePullPolicy: Always
           ports:
             - name: http
