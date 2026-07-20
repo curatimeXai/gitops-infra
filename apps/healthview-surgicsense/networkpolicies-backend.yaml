@@ -1,0 +1,43 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+ name: "network-policy-cilium-backend-surgicsense"
+ namespace: healthview-surgicsense
+spec:
+ endpointSelector:
+   matchLabels: 
+     app.kubernetes.io/component: backend
+ ingress: 
+ - fromEndpoints:
+   - matchLabels:
+       kubernetes.io/metadata.name: ingress-nginx
+   toPorts:
+    - ports:
+      - port: "8000"
+        protocol: TCP
+ egress:
+ - toEndpoints:
+   - matchLabels:
+       kubernetes.io/metadata.name: kube-system
+   toPorts:
+   - ports:
+     - port: "53"
+       protocol: ANY
+     rules:
+       dns:
+       - match Name: "8ps1i-private.upcloudobjects.com"
+       - match Name: "postgres-dbs-dpiqbpsmhehg.db.upclouddatabases.com"
+ - toFQDNs:
+    - matchName: "8ps1i-private.upcloudobjects.com"
+   toPorts:
+    - ports:
+      - port: "443"
+        protocol: TCP
+ - toFQDNs:
+   - matchName: "postgres-dbs-dpiqbpsmhehg.db.upclouddatabases.com"
+   toPorts:
+    - ports:
+      - port: "11569"
+        protocol: TCP
+
+    
