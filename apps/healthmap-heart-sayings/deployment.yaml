@@ -21,7 +21,7 @@ spec:
           - name: ghcr-secret
       containers:
         - name: heart-sayings
-          image: ghcr.io/curatimexai/heart-sayings:latest
+          image: ghcr.io/curatimexai/heart-sayings:a730f3f030ca454ab1bcdf20db9fd68164dcf344
           imagePullPolicy: Always
           ports:
             - name: http
