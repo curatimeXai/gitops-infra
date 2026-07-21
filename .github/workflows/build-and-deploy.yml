@@ -11,10 +11,18 @@ on:
       backend-image:
         required: false
         type: string
+      #if backend + frontend are build in a single image
+      image:
+        required: false
+        type: string
       frontend-context:
         required: false
         type: string
       backend-context:
+        required: false
+        type: string
+      #if backend + frontend are build in a single image
+      context:
         required: false
         type: string
       api-url:
@@ -78,6 +86,15 @@ jobs:
           tags: ghcr.io/curatimexai/${{ inputs.backend-image }}:${{ github.sha }}
           context: ${{ inputs.backend-context }}
           build-args: GITHUB_PAT=${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Build and push  image
+        if: inputs.context != ''
+        uses: docker/build-push-action@v7
+        with:
+          push: true
+          tags: ghcr.io/curatimexai/${{ inputs.image }}:${{ github.sha }}
+          context: ${{ inputs.context }}
+          build-args: GITHUB_PAT=${{ secrets.GITHUB_TOKEN }}
 
       - name: Update image tags in gitops-infra
         run: |
@@ -88,6 +105,9 @@ jobs:
           fi
           if [[ -n "${{ inputs.backend-image }}" ]];
           then sed -i "s|image: ghcr.io/curatimexai/${{ inputs.backend-image }}:.*|image: ghcr.io/curatimexai/${{ inputs.backend-image }}:${{ github.sha }}|" apps/${{ inputs.app-name }}/deployment-backend.yaml
+          fi 
+          if [[ -n "${{ inputs.image }}" ]];
+          then sed -i "s|image: ghcr.io/curatimexai/${{ inputs.image }}:.*|image: ghcr.io/curatimexai/${{ inputs.image }}:${{ github.sha }}|" apps/${{ inputs.app-name }}/deployment.yaml
           fi 
           git config user.email "github-actions@github.com"
           git config user.name "GitHub Actions"
