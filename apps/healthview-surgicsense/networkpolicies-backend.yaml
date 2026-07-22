@@ -10,7 +10,7 @@ spec:
  ingress: 
  - fromEndpoints:
    - matchLabels:
-       kubernetes.io/metadata.name: ingress-nginx
+       io.kubernetes.pod.namespace: ingress-nginx
    toPorts:
     - ports:
       - port: "8000"
@@ -18,7 +18,7 @@ spec:
  egress:
  - toEndpoints:
    - matchLabels:
-       kubernetes.io/metadata.name: kube-system
+       io.kubernetes.pod.namespace: kube-system
    toPorts:
    - ports:
      - port: "53"
