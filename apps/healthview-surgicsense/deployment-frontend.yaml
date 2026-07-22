@@ -9,6 +9,7 @@ metadata:
     app.kubernetes.io/part-of: healthview-surgicsense
     
 spec:
+  revisionHistoryLimit: 2
   replicas: 1
   selector:
     matchLabels:
@@ -20,6 +21,7 @@ spec:
         app.kubernetes.io/component: frontend
         app.kubernetes.io/part-of: healthview-surgicsense
     spec:
+    
       imagePullSecrets:
         - name: ghcr-secret
       containers:

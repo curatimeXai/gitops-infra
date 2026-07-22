@@ -7,6 +7,7 @@ metadata:
     app: cardiomegaly-frontend
 spec:
   replicas: 1
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: cardiomegaly-frontend
@@ -15,6 +16,7 @@ spec:
       labels:
         app: cardiomegaly-frontend
     spec:
+      
       imagePullSecrets:
         - name: ghcr-secret
       containers:

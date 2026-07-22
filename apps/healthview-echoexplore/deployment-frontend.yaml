@@ -4,6 +4,7 @@ metadata:
   name: echoexplore-frontend
   namespace: healthview-echoexplore
 spec:
+  revisionHistoryLimit: 2
   replicas: 1
   selector:
     matchLabels:

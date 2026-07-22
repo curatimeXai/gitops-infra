@@ -5,6 +5,7 @@ metadata:
   namespace: nightingale-heartaware
 spec:
   replicas: 1
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: heartaware-frontend
@@ -13,6 +14,7 @@ spec:
       labels:
         app: heartaware-frontend
     spec:
+      
       imagePullSecrets:
         - name: ghcr-secret
       containers:

@@ -6,6 +6,7 @@ metadata:
   labels:
     app: ecgprediction-backend
 spec:
+  revisionHistoryLimit: 2
   
   selector:
     matchLabels:
@@ -15,6 +16,7 @@ spec:
       labels:
         app: ecgprediction-backend
     spec:
+      
       imagePullSecrets:
         - name: ghcr-secret
       containers:

@@ -8,6 +8,7 @@ metadata:
     type: frontend
 spec:
   replicas: 1
+  revisionHistoryLimit: 2
   
   selector:
     matchLabels:
@@ -18,6 +19,7 @@ spec:
         app: pollutionmap-frontend
         type: frontend
     spec:
+      
       imagePullSecrets:
         - name: ghcr-secret
       containers:

@@ -4,6 +4,7 @@ metadata:
   name: echoexplore-backend
   namespace: healthview-echoexplore
 spec:
+  revisionHistoryLimit: 2
   
   selector:
     matchLabels:
@@ -13,6 +14,7 @@ spec:
       labels:
         app: echoexplore-backend
     spec:
+      
       imagePullSecrets:
         - name: ghcr-secret
       containers:
