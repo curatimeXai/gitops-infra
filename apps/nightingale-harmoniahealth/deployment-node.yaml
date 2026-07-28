@@ -23,7 +23,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: node
-          image: ghcr.io/curatimexai/nightingale-harmoniahealth-node:8c14c69
+          image: ghcr.io/curatimexai/nightingale-harmoniahealth-node:latest
           imagePullPolicy: Always
           ports:
             - name: http

@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthview-segmentation3d-backend
+  namespace: healthview-segmentation3d
+  labels:
+    app.kubernetes.io/name: healthview-segmentation3d-backend
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/part-of: healthview-segmentation3d
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: healthview-segmentation3d-backend
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: healthview-segmentation3d-backend
+        app.kubernetes.io/component: backend
+        app.kubernetes.io/part-of: healthview-segmentation3d
+    spec:
+      imagePullSecrets:
+        - name: ghcr-secret
+      terminationGracePeriodSeconds: 600
+      containers:
+        - name: backend
+          image: ghcr.io/curatimexai/healthview-segmentation3d-backend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+          env:
+            - name: PYTHONUNBUFFERED
+              value: "1"
+            - name: TF_CPP_MIN_LOG_LEVEL
+              value: "2"
+          resources:
+            requests:
+              cpu: "1000m"
+              memory: "4Gi"
+            limits:
+              cpu: "2000m"
+              memory: "8Gi"
+          startupProbe:
+            tcpSocket:
+              port: http
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 60
+          readinessProbe:
+            tcpSocket:
+              port: http
+            periodSeconds: 15
+            timeoutSeconds: 3
+            failureThreshold: 6
+          livenessProbe:
+            tcpSocket:
+              port: http
+            periodSeconds: 30
+            timeoutSeconds: 3
+            failureThreshold: 10
+          volumeMounts:
+            - name: uploads
+              mountPath: /app/uploads
+            - name: outputs
+              mountPath: /app/outputs
+      volumes:
+        - name: uploads
+          emptyDir: {}
+        - name: outputs
+          emptyDir: {}

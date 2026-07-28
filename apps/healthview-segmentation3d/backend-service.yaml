@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: healthview-segmentation3d-backend
+  namespace: healthview-segmentation3d
+  labels:
+    app.kubernetes.io/name: healthview-segmentation3d-backend
+    app.kubernetes.io/component: backend
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: healthview-segmentation3d-backend
+  ports:
+    - name: http
+      port: 8000
+      targetPort: http
+      protocol: TCP

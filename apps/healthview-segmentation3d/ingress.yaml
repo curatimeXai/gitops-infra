@@ -1,0 +1,45 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: healthview-segmentation3d
+  namespace: healthview-segmentation3d
+  labels:
+    app.kubernetes.io/name: healthview-segmentation3d
+    app.kubernetes.io/part-of: healthview
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "1g"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "60"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "900"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "900"
+    nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+    nginx.ingress.kubernetes.io/proxy-buffering: "off"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - segmentation.nightingaleheart.com
+        - segmentation-api.nightingaleheart.com
+      secretName: healthview-segmentation3d-tls
+  rules:
+    - host: segmentation.nightingaleheart.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: healthview-segmentation3d-frontend
+                port:
+                  number: 80
+    - host: segmentation-api.nightingaleheart.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: healthview-segmentation3d-backend
+                port:
+                  number: 8000

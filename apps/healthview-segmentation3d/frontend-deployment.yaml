@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthview-segmentation3d-frontend
+  namespace: healthview-segmentation3d
+  labels:
+    app.kubernetes.io/name: healthview-segmentation3d-frontend
+    app.kubernetes.io/component: frontend
+    app.kubernetes.io/part-of: healthview-segmentation3d
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: healthview-segmentation3d-frontend
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: healthview-segmentation3d-frontend
+        app.kubernetes.io/component: frontend
+        app.kubernetes.io/part-of: healthview-segmentation3d
+    spec:
+      imagePullSecrets:
+        - name: ghcr-secret
+      containers:
+        - name: frontend
+          image: ghcr.io/curatimexai/healthview-segmentation3d-frontend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 3
+            periodSeconds: 10
+            timeoutSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            timeoutSeconds: 3
+          volumeMounts:
+            - name: runtime-config
+              mountPath: /usr/share/nginx/html/config.js
+              subPath: config.js
+              readOnly: true
+      volumes:
+        - name: runtime-config
+          configMap:
+            name: healthview-segmentation3d-frontend-config
