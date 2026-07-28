@@ -24,7 +24,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: pollutionmap-frontend
-          image: ghcr.io/curatimexai/nightingale-pollutionmap-frontend:72c8d9c1515228eb19f52b2eb7227eae833fd418
+          image: ghcr.io/curatimexai/nightingale-pollutionmap-frontend:9e8835716ef9df55ea565733228fde6dfaf7dbca
           ports:
             - containerPort: 80
           resources:
