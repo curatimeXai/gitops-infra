@@ -23,7 +23,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: frontend
-          image: ghcr.io/curatimexai/healthview-segmentation3d-frontend:latest
+          image: ghcr.io/curatimexai/healthview-segmentation3d-frontend:4e71d0ac6df5eef2afff109d91b59ba22f79fb13
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

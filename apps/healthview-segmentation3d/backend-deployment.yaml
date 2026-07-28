@@ -26,7 +26,7 @@ spec:
       terminationGracePeriodSeconds: 600
       containers:
         - name: backend
-          image: ghcr.io/curatimexai/healthview-segmentation3d-backend:latest
+          image: ghcr.io/curatimexai/healthview-segmentation3d-backend:4e71d0ac6df5eef2afff109d91b59ba22f79fb13
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
