@@ -5,8 +5,10 @@ metadata:
   namespace: pollutionmap
   labels:
     app: pollutionmap-frontend
+    type: frontend
 spec:
   replicas: 1
+  revisionHistoryLimit: 2
   
   selector:
     matchLabels:
@@ -15,12 +17,14 @@ spec:
     metadata:
       labels:
         app: pollutionmap-frontend
+        type: frontend
     spec:
+      
       imagePullSecrets:
         - name: ghcr-secret
       containers:
         - name: pollutionmap-frontend
-          image: ghcr.io/curatimexai/nightingale-pollutionmap-frontend:4a374aaf647747e76d6aedff30d06fdec692396b
+          image: ghcr.io/curatimexai/nightingale-pollutionmap-frontend:72c8d9c1515228eb19f52b2eb7227eae833fd418
           ports:
             - containerPort: 80
           resources:

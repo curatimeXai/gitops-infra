@@ -8,6 +8,10 @@ metadata:
     app.kubernetes.io/part-of: healthview
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/proxy-body-size: "200m"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
 spec:
   ingressClassName: nginx
   tls:
@@ -25,7 +29,7 @@ spec:
               service:
                 name: healthview-surgicsense-frontend
                 port:
-                  number: 80
+                  number: 8080
     - host: api.surgicsense.nightingaleheart.com
       http:
         paths:
@@ -35,4 +39,4 @@ spec:
               service:
                 name: healthview-surgicsense-backend
                 port:
-                  number: 3001
+                  number: 8000

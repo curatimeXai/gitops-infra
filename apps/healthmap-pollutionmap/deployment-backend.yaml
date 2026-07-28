@@ -5,7 +5,9 @@ metadata:
   namespace: pollutionmap
   labels:
     app: pollutionmap-backend
+    type: backend 
 spec:
+  revisionHistoryLimit: 2
   selector: 
     matchLabels:
       app: pollutionmap-backend
@@ -13,12 +15,13 @@ spec:
     metadata:
       labels:
         app: pollutionmap-backend
+        type: backend
     spec:
       imagePullSecrets:
           - name: ghcr-secret
       containers:
         - name: pollutionmap-backend
-          image: ghcr.io/curatimexai/nightingale-pollutionmap-backend:4a374aaf647747e76d6aedff30d06fdec692396b
+          image: ghcr.io/curatimexai/nightingale-pollutionmap-backend:72c8d9c1515228eb19f52b2eb7227eae833fd418
           envFrom:
             - secretRef:
                 name: pollutionmap-secret

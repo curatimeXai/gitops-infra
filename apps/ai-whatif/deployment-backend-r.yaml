@@ -7,6 +7,7 @@ metadata:
     app: aiwhatif-backend-r
     type: backend
 spec:
+  revisionHistoryLimit: 2
   
   selector:
     matchLabels:
@@ -21,7 +22,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: aiwhatif-backend-r
-          image: ghcr.io/curatimexai/nightingale-aiwhatif-backend-r:d895bbc3d8cf6a71a889c053385d977faaa56720
+          image: ghcr.io/curatimexai/nightingale-aiwhatif-backend-r:be430e59bacdbae19a24c586a0b8b1b3776ffe6e
           envFrom:
             - secretRef:
                 name: aiwhatif-secret

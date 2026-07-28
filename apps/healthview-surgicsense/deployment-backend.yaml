@@ -8,6 +8,7 @@ metadata:
     app.kubernetes.io/component: backend
     app.kubernetes.io/part-of: healthview-surgicsense
 spec:
+  revisionHistoryLimit: 2
   
   selector:
     matchLabels:
@@ -19,18 +20,21 @@ spec:
         app.kubernetes.io/component: backend
         app.kubernetes.io/part-of: healthview-surgicsense
     spec:
+      
       imagePullSecrets:
         - name: ghcr-secret
       containers:
         - name: backend
-          image: ghcr.io/curatimexai/surgicsense-backend:latest
+          image: ghcr.io/curatimexai/segmentation-backend:f946a4b6b6d01808877d56ebb1135385ff06014e
           imagePullPolicy: Always
           ports:
             - name: api
               containerPort: 8000
           envFrom:
             - secretRef:
-                name: surgicsense-backend-secret
+                name: surgicsense-secret
+            - configMapRef:
+                name: surgicsense-configmap
           readinessProbe:
             httpGet:
               path: /docs

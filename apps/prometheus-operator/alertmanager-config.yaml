@@ -4,18 +4,13 @@ metadata:
   name: alertmanager-config
   namespace: monitoring
 spec:
-  
   receivers:
-     - name: "discord-receiver"
-       discordConfigs:
-         - sendResolved: true
-           apiURL:
-              name: prometheus-secret
-              key: DISCORD_WEBHOOK_URL
-            
-             
-        
-          
+    - name: "discord-receiver"
+      discordConfigs:
+        - sendResolved: true
+          apiURL:
+            name: prometheus-secret
+            key: DISCORD_WEBHOOK_URL
   route:
     receiver: "discord-receiver"
     groupWait: 30s
@@ -23,6 +18,20 @@ spec:
     repeatInterval: 3h
     groupBy: ["namespace", "alertname"]
     routes:
+      - receiver: "discord-receiver"
+        matchers:
+          - name: "namespace"
+            value: "healthview-surgicsense"
+            matchType: "="
+        muteTimeIntervals:
+          - all-time
+      - receiver: "discord-receiver"
+        matchers:
+          - name: "namespace"
+            value: "nightingale-harmoniahealth"
+            matchType: "="
+        muteTimeIntervals:
+          - all-time
       - receiver: "discord-receiver"
         matchers:
           - name: "severity"
@@ -44,7 +53,6 @@ spec:
             matchType: "="
         activeTimeIntervals:
           - business-hours
-
   muteTimeIntervals:
     - name: "business-hours"
       timeIntervals:
@@ -55,4 +63,3 @@ spec:
     - name: "all-time"
       timeIntervals:
         - weekdays: ['sunday:saturday']
- 

@@ -8,6 +8,7 @@ metadata:
     app.kubernetes.io/component: rasa
     app.kubernetes.io/part-of: nightingale-harmoniahealth
 spec:
+  revisionHistoryLimit: 2
   replicas: 1
   selector:
     matchLabels:
@@ -23,7 +24,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: rasa
-          image: ghcr.io/curatimexai/nightingale-harmoniahealth-rasa:8c14c69
+          image: ghcr.io/curatimexai/nightingale-harmoniahealth-rasa:451e581ebd38027f982f21423c3ccb54ea8ef6f4
           imagePullPolicy: Always
           ports:
             - name: rasa
@@ -55,7 +56,7 @@ spec:
               cpu: "2"
               memory: 3Gi
         - name: actions
-          image: ghcr.io/curatimexai/nightingale-harmoniahealth-rasa-actions:8c14c69
+          image: ghcr.io/curatimexai/nightingale-harmoniahealth-rasa-actions:451e581ebd38027f982f21423c3ccb54ea8ef6f4
           imagePullPolicy: Always
           ports:
             - name: actions

@@ -8,6 +8,7 @@ metadata:
     app.kubernetes.io/component: node-backend
     app.kubernetes.io/part-of: nightingale-harmoniahealth
 spec:
+  revisionHistoryLimit: 2
   replicas: 1
   selector:
     matchLabels:
@@ -23,7 +24,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: node
-          image: ghcr.io/curatimexai/nightingale-harmoniahealth-node:latest
+          image: ghcr.io/curatimexai/nightingale-harmoniahealth-node:451e581ebd38027f982f21423c3ccb54ea8ef6f4
           imagePullPolicy: Always
           ports:
             - name: http

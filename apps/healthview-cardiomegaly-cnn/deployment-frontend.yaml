@@ -7,6 +7,7 @@ metadata:
     app: cardiomegaly-frontend
 spec:
   replicas: 1
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: cardiomegaly-frontend
@@ -15,11 +16,12 @@ spec:
       labels:
         app: cardiomegaly-frontend
     spec:
+      
       imagePullSecrets:
         - name: ghcr-secret
       containers:
         - name: cardiomegaly-frontend
-          image: ghcr.io/curatimexai/healthview-cardiomegaly-cnn-frontend:e5838e6f034cdad7c5abc65ae97ae385d3a447b1
+          image: ghcr.io/curatimexai/healthview-cardiomegaly-cnn-frontend:f2db3eaf27729683582939cd89840d7a1b1297e8
           imagePullPolicy: Always
           ports:
             - containerPort: 80

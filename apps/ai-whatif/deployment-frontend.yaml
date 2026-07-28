@@ -7,6 +7,7 @@ metadata:
     app: aiwhatif-frontend
 spec:
   replicas: 1
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: aiwhatif-frontend
@@ -20,7 +21,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: aiwhatif-frontend
-          image: ghcr.io/curatimexai/nightingale-aiwhatif-frontend:d895bbc3d8cf6a71a889c053385d977faaa56720
+          image: ghcr.io/curatimexai/nightingale-aiwhatif-frontend:be430e59bacdbae19a24c586a0b8b1b3776ffe6e
           ports:
             - containerPort: 80
           livenessProbe:

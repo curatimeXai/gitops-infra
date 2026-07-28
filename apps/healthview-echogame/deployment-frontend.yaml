@@ -8,6 +8,7 @@ metadata:
     app.kubernetes.io/component: frontend
     app.kubernetes.io/part-of: healthview-echogame
 spec:
+  revisionHistoryLimit: 2
   replicas: 1
   selector:
     matchLabels:
@@ -41,7 +42,7 @@ spec:
               memory: 512Mi
             limits:
               cpu: "1"
-              memory: 1Gi
+              memory: 2Gi
           readinessProbe:
             tcpSocket:
               port: 3000

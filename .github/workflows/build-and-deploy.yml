@@ -6,15 +6,23 @@ on:
         required: true
         type: string
       frontend-image:
-        required: true
+        required: false
         type: string
       backend-image:
         required: false
         type: string
+      #if backend + frontend are build in a single image
+      image:
+        required: false
+        type: string
       frontend-context:
-        required: true
+        required: false
         type: string
       backend-context:
+        required: false
+        type: string
+      #if backend + frontend are build in a single image
+      context:
         required: false
         type: string
       api-url:
@@ -53,7 +61,16 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Free up disk space
+        run: |
+          echo "Disk before cleanup:"; df -h /
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/.ghcup \
+                      /usr/local/lib/android /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force || true
+          echo "Disk after cleanup:"; df -h /
+
       - name: Build and push frontend image
+        if: inputs.frontend-context != ''
         uses: docker/build-push-action@v7
         with:
           push: true
@@ -69,14 +86,28 @@ jobs:
           tags: ghcr.io/curatimexai/${{ inputs.backend-image }}:${{ github.sha }}
           context: ${{ inputs.backend-context }}
           build-args: GITHUB_PAT=${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Build and push  image
+        if: inputs.context != ''
+        uses: docker/build-push-action@v7
+        with:
+          push: true
+          tags: ghcr.io/curatimexai/${{ inputs.image }}:${{ github.sha }}
+          context: ${{ inputs.context }}
+          build-args: GITHUB_PAT=${{ secrets.GITHUB_TOKEN }}
 
       - name: Update image tags in gitops-infra
         run: |
           git clone https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/curatimeXai/gitops-infra.git
           cd gitops-infra
-          sed -i "s|image: ghcr.io/curatimexai/${{ inputs.frontend-image }}:.*|image: ghcr.io/curatimexai/${{ inputs.frontend-image }}:${{ github.sha }}|" apps/${{ inputs.app-name }}/deployment-frontend.yaml
+          if [[ -n "${{ inputs.frontend-image }}" ]];
+          then sed -i "s|image: ghcr.io/curatimexai/${{ inputs.frontend-image }}:.*|image: ghcr.io/curatimexai/${{ inputs.frontend-image }}:${{ github.sha }}|" apps/${{ inputs.app-name }}/deployment-frontend.yaml
+          fi
           if [[ -n "${{ inputs.backend-image }}" ]];
           then sed -i "s|image: ghcr.io/curatimexai/${{ inputs.backend-image }}:.*|image: ghcr.io/curatimexai/${{ inputs.backend-image }}:${{ github.sha }}|" apps/${{ inputs.app-name }}/deployment-backend.yaml
+          fi 
+          if [[ -n "${{ inputs.image }}" ]];
+          then sed -i "s|image: ghcr.io/curatimexai/${{ inputs.image }}:.*|image: ghcr.io/curatimexai/${{ inputs.image }}:${{ github.sha }}|" apps/${{ inputs.app-name }}/deployment.yaml
           fi 
           git config user.email "github-actions@github.com"
           git config user.name "GitHub Actions"
