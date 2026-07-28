@@ -21,7 +21,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: cardiomegaly-backend
-          image: ghcr.io/curatimexai/healthview-cardiomegaly-cnn-backend:51785d005005ae600577785d3f0f011bdcf93384
+          image: ghcr.io/curatimexai/healthview-cardiomegaly-cnn-backend:ea22e7422dd497a709a5c988f77ad164ba3803b7
           imagePullPolicy: Always
           envFrom:
             - secretRef:
