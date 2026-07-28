@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: git@github.com:curatimeXai/gitops-infra.git
-    targetRevision: main
+    targetRevision: HEAD
     path: apps/healthview-segmentation3d
   destination:
     server: https://kubernetes.default.svc
