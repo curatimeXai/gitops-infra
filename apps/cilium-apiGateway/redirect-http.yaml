@@ -7,8 +7,7 @@ spec:
   parentRefs:
     - name: api-gateway
       sectionName: http
-  hostnames:
-  - *.nightingaleheart.com
+
   rules:
   - filters:
     - type: RequestRedirect
