@@ -8,7 +8,7 @@ spec:
   source:
     path: config/crd/standard
     repoURL: https://github.com/kubernetes-sigs/gateway-api.git
-    targetRevision: HEAD
+    targetRevision: v1.3.0
   destination:
     server: 'https://kubernetes.default.svc'
   syncPolicy:
