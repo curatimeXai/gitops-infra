@@ -2,4 +2,5 @@ apps/*/secret.yaml
 apps/*/upcloud-autoscaler.yaml
 */secret-*.yaml
 */*-secret.yaml
-
+apps/*/*-secret.yaml
+apps/*/secret-api-Cloufare.yaml
