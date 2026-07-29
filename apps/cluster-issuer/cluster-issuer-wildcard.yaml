@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: cluster-issuer-api-gateway
+  namespace: gateway
+spec:
+  acme: 
+    email: info@nightingaleheart.com
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: nightingaleheart-wildcard-issuer-account-key
+    solvers:
+    - dns01:
+      cloudflare:
+        apiTokenSecretRef:
+          name: cloudflare-api-token-secret
+          key: api-token

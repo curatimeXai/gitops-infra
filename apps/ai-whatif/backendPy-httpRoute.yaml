@@ -1,0 +1,19 @@
+apiVersion: gateway.networking.k8s.io/V1
+kind: HTTPRoute
+metadata:
+  name: api-gateway
+  namespace: ai-whatif
+spec:
+  parentRefs:
+  - name: api-gateway
+    sectionName: https
+  hostnames:
+  -  api-python.aiwhatif.nightingaleheart.com
+  rules:
+  - matches:
+    - path: 
+       type: PathPrefix
+       value: /
+    backendRefs:
+    - name: aiwhatif-backend-py-service
+      port: 8000
