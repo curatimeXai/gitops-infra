@@ -11,7 +11,7 @@ spec:
       name: nightingaleheart-wildcard-issuer-account-key
     solvers:
     - dns01:
-      cloudflare:
-        apiTokenSecretRef:
-          name: cloudflare-api-token-secret
-          key: api-token
+       cloudflare:
+         apiTokenSecretRef:
+           name: cloudflare-api-token-secret
+           key: api-token

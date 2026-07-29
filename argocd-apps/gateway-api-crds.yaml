@@ -12,4 +12,5 @@ spec:
   destination:
     server: 'https://kubernetes.default.svc'
   syncPolicy:
-    selfHeal: true
+    automated:
+     selfHeal: true

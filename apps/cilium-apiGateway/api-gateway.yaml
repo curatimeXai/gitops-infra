@@ -2,8 +2,8 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: api-gateway
-  namespace:
-  annotations.io/cluster-issuer: letsencrypt-prod
+  namespace: gateway
+  annotations.io/issuer: letsencrypt-prod
 spec:
   gatewayClassName: cilium
   listeners:
