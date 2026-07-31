@@ -9,7 +9,3 @@ resources:
   - https://raw.githubusercontent.com/kubernetes-sigs/gateway-api/master/config/crd/standard/gateway.networking.k8s.io_listenersets.yaml
   - https://raw.githubusercontent.com/kubernetes-sigs/gateway-api/master/config/crd/standard/gateway.networking.k8s.io_vap_safeupgrades.yaml
   - https://raw.githubusercontent.com/kubernetes-sigs/gateway-api/master/config/crd/standard/gateway.networking.k8s.io_backendtlspolicies.yaml
-  - https://raw.githubusercontent.com/kubernetes-sigs/gateway-api/master/config/crd/
-  - https://raw.githubusercontent.com/kubernetes-sigs/gateway-api/master/config/crd/
-  - https://raw.githubusercontent.com/kubernetes-sigs/gateway-api/master/config/crd/
-  - https://raw.githubusercontent.com/kubernetes-sigs/gateway-api/master/config/crd/
