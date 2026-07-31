@@ -3,7 +3,7 @@ kind: Gateway
 metadata:
   name: api-gateway
   namespace: gateway
-  annotations.io/issuer: letsencrypt-prod
+  cert-manager.io/issuer: cluster-issuer-api-gateway
 spec:
   gatewayClassName: cilium
   listeners:
