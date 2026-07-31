@@ -6,7 +6,7 @@ metadata:
 spec:
  parentRefs:
  - name:  api-gateway
-   sectioName: https
+   sectionName: https
    namespace: gateway
  hostnames:
  - aiwhatif.nightingaleheart.com
