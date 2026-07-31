@@ -3,7 +3,8 @@ kind: Gateway
 metadata:
   name: api-gateway
   namespace: gateway
-  cert-manager.io/issuer: cluster-issuer-api-gateway
+  annotations:
+   cert-manager.io/issuer: cluster-issuer-api-gateway
 spec:
   gatewayClassName: cilium
   listeners:
