@@ -1,7 +1,7 @@
 apiVersion: gateway.networking.k8s.io/V1
 kind: HTTPRoute
 metadata:
-  name: api-gateway
+  name: backendpy-httproute
   namespace: ai-whatif
 spec:
   parentRefs:
