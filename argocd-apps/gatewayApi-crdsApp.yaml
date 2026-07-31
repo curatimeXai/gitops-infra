@@ -8,7 +8,7 @@ spec:
    source:
       repoURL: git@github.com:curatimeXai/gitops-infra.git
       targetRevision: HEAD
-      path: argocd-apps/crds-gateway-api
+      path: apps/crds-gateway-api
    destination:
      server: https://kubernetes.default.svc
      namespace: gateway
