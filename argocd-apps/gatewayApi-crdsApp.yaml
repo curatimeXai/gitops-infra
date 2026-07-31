@@ -12,6 +12,7 @@ spec:
    destination:
      server: https://kubernetes.default.svc
      namespace: gateway
-     automated:
-        prune: true
-        selfHeal: true
+     syncPolicy:
+      automated:
+         prune: false
+         selfHeal: true
