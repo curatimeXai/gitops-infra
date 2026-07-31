@@ -7,6 +7,7 @@ spec:
   parentRefs:
   - name: api-gateway
     sectionName: https
+    namespace: gateway
   hostnames:
   -  api-python.aiwhatif.nightingaleheart.com
   rules:
