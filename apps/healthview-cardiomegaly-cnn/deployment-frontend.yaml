@@ -21,7 +21,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: cardiomegaly-frontend
-          image: ghcr.io/curatimexai/healthview-cardiomegaly-cnn-frontend:a0c16fdbe5906a82c9ecfc80ea786ed3b9b78196
+          image: ghcr.io/curatimexai/healthview-cardiomegaly-cnn-frontend:a717b7fb5dba924b59e16348718754f711452c53
           imagePullPolicy: Always
           ports:
             - containerPort: 80
