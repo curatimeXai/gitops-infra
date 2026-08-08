@@ -12,5 +12,6 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: cloud-web-service
+        - name: aiwhatif-frontend-service
           port: 80
+          namespace: ai-whatif
