@@ -25,7 +25,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: backend
-          image: ghcr.io/curatimexai/segmentation-backend:395e521a8e0e58002aae4d2e670f731912de07d2
+          image: ghcr.io/curatimexai/segmentation-backend:230e5983ea09d18964fc8c1721f6bbaec96dfb78
           imagePullPolicy: Always
           ports:
             - name: api
