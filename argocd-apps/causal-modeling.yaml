@@ -1,0 +1,20 @@
+apiVersion: argoprojj.io/v1alpha1
+kind: Application
+metadata:
+  name: causal-modeling
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/curatimeXai/gitops-infra.git
+    targetRevision: HEAD
+    path: apps/causal-modeling
+  destination: 
+    server: https://kubernetes.default.svc
+    namespace: causal-modeling
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - createNamespace: true
