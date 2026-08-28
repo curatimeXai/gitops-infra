@@ -18,9 +18,9 @@ spec:
            protocol: ANY
         rules:
          dns:
-           - matchName: "8ps1i-private.upcloudobjects.com"
+           - matchName: "https://8ps1i.upcloudobjects.com/aiwhatif"
   - toFQDNs:
-     - matchName: "8ps1i-private.upcloudobjects.com" 
+     - matchName: "8ps1i-private.upcloudobjects.comhttps://8ps1i.upcloudobjects.com/aiwhatif" 
     toPorts:
      - ports:
        - port: "443"
