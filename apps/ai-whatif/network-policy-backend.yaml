@@ -18,8 +18,10 @@ spec:
               protocol: ANY
           rules:
             dns:
+              - matchName: "8ps1i.upcloudobjects.com"
               - matchName: "8ps1i-private.upcloudobjects.com"
     - toFQDNs:
+        - matchName: "8ps1i.upcloudobjects.com"
         - matchName: "8ps1i-private.upcloudobjects.com"
       toPorts:
         - ports:
