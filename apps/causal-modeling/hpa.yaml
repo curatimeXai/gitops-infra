@@ -8,18 +8,18 @@ spec:
     apiVersion: apps/V1
     kind: Deployment
     name: causal-modeling
-    minReplicas: 1
-    maxReplicas: 6
-    metrics:
-      - type: Resource
-        resource:
-          name: cpu
-          target:
-            type: Utilization
-            averageUtilization: 75
-      - type: Resource
-        resource:
-          name: memory
-          target:
-            type: Utilization
-            averageUtilization: 75
+  minReplicas: 1
+  maxReplicas: 6
+  metrics:
+   - type: Resource
+     resource:
+       name: cpu
+       target:
+         type: Utilization
+         averageUtilization: 75
+   - type: Resource
+     resource:
+       name: memory
+       target:
+          type: Utilization
+          averageUtilization: 75
