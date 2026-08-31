@@ -20,7 +20,7 @@ spec:
       containers:
 <<<<<<< HEAD:apps/causal-modeling/deployment-backend.yaml
       - name: causal-modeling-backend
-        image: ghcr.io/curatimexai/causal-modeling-backend:latest
+        image: ghcr.io/curatimexai/causal-modeling-backend:4a37a5e17e02e02aebe5064caa8fa85d3af709d0
 =======
       - name: causal-modeling
         image: ghcr.io/curatimexai/causal-modeling:10590fe994aba22a53950a9dc3de568747902537
