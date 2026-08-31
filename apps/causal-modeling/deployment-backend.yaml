@@ -18,8 +18,13 @@ spec:
       imagePullSecrets:
         - name: ghcr-secret
       containers:
+<<<<<<< HEAD:apps/causal-modeling/deployment-backend.yaml
       - name: causal-modeling-backend
         image: ghcr.io/curatimexai/causal-modeling-backend:latest
+=======
+      - name: causal-modeling
+        image: ghcr.io/curatimexai/causal-modeling:10590fe994aba22a53950a9dc3de568747902537
+>>>>>>> b3a87666c4eaa46cb1d5ddb7774e4ebc997cbee7:apps/causal-modeling/deployment.yaml
         ports:
         - containerPort: 3000
         startupProbe:
