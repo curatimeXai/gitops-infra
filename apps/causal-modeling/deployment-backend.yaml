@@ -19,7 +19,7 @@ spec:
         - name: ghcr-secret
       containers:
       - name: causal-modeling-backend
-        image: ghcr.io/curatimexai/causal-modeling-backend:4a37a5e17e02e02aebe5064caa8fa85d3af709d0
+        image: ghcr.io/curatimexai/causal-modeling-backend:ca50ae22fa46290f7ce9e7cd4c9440734c191613
 
         ports:
         - containerPort: 8000
