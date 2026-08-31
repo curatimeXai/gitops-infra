@@ -1,13 +1,13 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: causal-modeling-hpa
+  name: causal-modeling-hpa-frontend
   namespace: causal-modeling 
 spec:
   scaleTargetRef:
     apiVersion: apps/V1
     kind: Deployment
-    name: causal-modeling
+    name: causal-modeling-frontend
   minReplicas: 1
   maxReplicas: 6
   metrics:
