@@ -20,6 +20,7 @@ spec:
       containers:
       - name: causal-modeling-backend
         image: ghcr.io/curatimexai/causal-modeling-backend:4a37a5e17e02e02aebe5064caa8fa85d3af709d0
+
         ports:
         - containerPort: 8000
         startupProbe:
