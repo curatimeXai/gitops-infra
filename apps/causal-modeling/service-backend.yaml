@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata: 
-  name: causal-modeling-service
+  name: causal-modeling-service-backend
   namespace: causal-modeling
 spec:
   selector:
-    app: causal-modeling
+    app: causal-modeling-backend
   ports:
     - protocol: TCP
-      port: 3000
-      targetPort: 3000
+      port: 8000
+      targetPort: 8000

@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: causal-modeling
+ name: causal-modeling-backend
  namespace: causal-modeling
  labels:
-    app: causal-modeling
+    app: causal-modeling-backend
 spec:
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: causal-modeling
+      app: causal-modeling-backend
   template:
     metadata:
       labels:
-        app: causal-modeling
+        app: causal-modeling-backend
     spec:
       imagePullSecrets:
         - name: ghcr-secret
       containers:
-      - name: causal-modeling
-        image: ghcr.io/curatimexai/causal-modeling:c7896307edafe6580913312ef16d38db690e2f8b
+      - name: causal-modeling-backend
+        image: ghcr.io/curatimexai/causal-modeling-backend:latest
         ports:
         - containerPort: 3000
         startupProbe:

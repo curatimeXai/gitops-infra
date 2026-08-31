@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: causal-modeling-frontend
+ namespace: causal-modeling
+ labels:
+    app: causal-modeling-frontend
+spec:
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: causal-modeling-frontend
+  template:
+    metadata:
+      labels:
+        app: causal-modeling-frontend
+    spec:
+      imagePullSecrets:
+        - name: ghcr-secret
+      containers:
+      - name: causal-modeling-frontend
+        image: ghcr.io/curatimexai/causal-modeling-frontend:latest
+        ports:
+        - containerPort: 3000
+        startupProbe:
+          tcpSocket:
+            port: 3000
+          failureThreshold: 30
+          periodSeconds: 10
+        readinessProbe:
+          tcpSocket:
+            port: 3000
+          initialDelaySeconds: 20
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 3000
+          initialDelaySeconds: 40
+          periodSeconds: 10

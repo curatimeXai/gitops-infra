@@ -9,6 +9,7 @@ spec:
  tls:
     - hosts:
         - causal-modeling.nightingaleheart.com
+        - api-causal-modeling.nightingaleheart.com
       secretName: causal-modeling-tls
  ingressClassName: nginx
  rules:
@@ -19,6 +20,16 @@ spec:
           pathType: Prefix
           backend:
            service: 
-             name: causal-modeling-service
+             name: causal-modeling-service-frontend
              port:
                number: 3000
+    - host: api-causal-modeling.nightingaleheart.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: causal-modeling-service-backend
+                port:
+                  number: 8000
