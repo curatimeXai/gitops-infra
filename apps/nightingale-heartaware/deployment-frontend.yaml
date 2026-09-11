@@ -19,7 +19,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: heartaware-frontend
-          image: ghcr.io/curatimexai/nightingale-heartaware-frontend:0d13d9cdcd012b2639cd5a7b90b27d314041592e
+          image: ghcr.io/curatimexai/nightingale-heartaware-frontend:d8119dab41a49147a248e69c9de492262d69c79c
           imagePullPolicy: Always
           envFrom:
             - secretRef:
