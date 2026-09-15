@@ -18,6 +18,10 @@ Ticket #2: PollutionMap frontend still uses old API domain and old API ingress h
 * Frontend was calling the wrong API domain. The API base URL was baked into the frontend code at build time, pointing to api.pollutionmap.nightingaleheart.com. I updated it to api.pollutionmap.mlthrive.com and triggered a rebuild/redeploy.
 * Backend was rejecting requests from the new domain (CORS). Even after fixing #1, one feature (city search) still failed — the backend has a security setting (CORS) that only allows requests from an approved list of domains, and that list still only had the old nightingaleheart.com domains on it. So the backend was correctly blocking the new domain as "not recognized." I added the new domain to that allowlist and redeployed.
 * Both Backend and Frontend shows READY 1/1 ArgoCD is Synced/Healthy.
+* Ticket #6: SurgicSense frontend still uses old API domain after mlthrive.com migration (September 14, 2026):
+* Root cause: The API URL was hardcoded in the frontend's js/config.js, still pointing at the old dead domain (api.surgicsense.nightingaleheart.com) instead of the new one (api.surgicsense.mlthrive.com).
+* Fix: Updated that one line, committed to master. CI automatically built a new image, pushed it, and ArgoCD synced it to the cluster. Confirmed via kubectl that the new image is running, and confirmed live that login now works.
+* ArgoCD is Synced/Healthy.
 ---
 
 # 1. APPLICATION FIXES (Frontend Rebuilds / Hardcoded API URLs)
